@@ -1,6 +1,27 @@
 <?php
+require 'includes/crud.php';
 
 class Controller{
+
+	public function buscaMateria(){
+
+		$respuesta = Datos::mdlmaterias("materias");
+
+		foreach ($respuesta as $row => $item){
+			
+				echo  '<option>'.$item["nombre"].'</option>';
+		}
+	}
+
+	public function buscaProfesor(){
+
+		$respuesta = Datos::mdlBuscaDocentes("docentes");
+
+		foreach ($respuesta as $row => $item){
+			
+				echo  '<option>'.$item["nombres"]." ".$item["apellidoPat"]." ".$item[apellidoMat].'</option>';
+		}
+	}
 
 // 	#REGISTRO DE SOCIOS
 // 	#------------------------------------
@@ -328,18 +349,17 @@ class Controller{
 
 	#REGISTRO DE PAQUETES
 // 	#------------------------------------
-	public function registroPaquete(){
+	public function registroOferta(){
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-			$datosController = array( "nombre"=>$_POST["nombre"],
-								      "costo"=>$_POST["costo"],
-								      "clases"=>$_POST["clases"],
-								      "vigencia"=>$_POST["vigencia"]);
+			$datosController = array( "profe"=>$_POST["profe"],
+								      "materia"=>$_POST["materia"],
+								      "tipo"=>$_POST["tipo"]);
 
 			//"fechaIngreso" => date("Y-m-d"));
 
-			$respuesta = Datos::registroPaquete($datosController, "paquetes");
+			$respuesta = Datos::registroOferta($datosController, "oferta");
 
 			if($respuesta == "success"){
 				echo '<script type="text/javascript">Swal.fire({
@@ -349,7 +369,7 @@ class Controller{
                     })
                     .then((value) => {
                       if (value) {
-                        window.location.href = "paquetes.php";
+                        window.location.href = "listaoferta.php";
                       }
                     });</script> ';
 
@@ -452,20 +472,19 @@ class Controller{
 
     #LISTADO DE TODOS LOS PAQUETES
     #------------------------------------
-    public function listaPaquetes(){
+    public function listaoferta(){
 
-        $respuesta = Datos::lista("paquetes");
+        $respuesta = Datos::listaoferta("oferta");
         $cont =0;
 
         foreach ($respuesta as $row => $item){
         	$cont ++;
 
         echo '<tr>
-                  <td>'.$item["nombre"].'</td>
-                  <td>'.$item["costo"].'</td>
-                  <td>'.$item["clases"].'</td>
-                  <td>'.$item["caducaDias"].'</td>
-                  <td><a href="editPaquete.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                  <td>'.$item["docente"].'</td>
+                  <td>'.$item["materia"].'</td>
+                  <td>'.$item["tipo"].'</td>
+                  <td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                       <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
                       <a href="paquetes.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
                   </td>

@@ -4,6 +4,24 @@ require_once "conexion.php";
 
 class Datos extends Conexion{
 
+	public function mdlmaterias($tabla){
+
+			$stmt = Conexion::conectar()->prepare("SELECT nombre FROM $tabla ORDER BY nombre");
+			$stmt->execute();
+			return $stmt->fetchAll();
+			$stmt->close();
+		}
+
+	public function mdlBuscaDocentes($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombres");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}	
+
+
+
 	#VERIFICA SI EL USUARIO EXISTE PARA INGRESAR AL SISTEMA
 	#--------------------------------------------------------
 	public function ingresoModel($datosModel, $tabla){
@@ -23,8 +41,8 @@ class Datos extends Conexion{
 
 	// #LISTA TODOS LOS REGISTROS DE UNA TABLA
 	// #-------------------------------------
-	public function lista($tabla){
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre");
+	public function listaOferta($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY docente");
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
@@ -151,14 +169,13 @@ class Datos extends Conexion{
 
 	#REGISTRO DE PAQUETE
 	#-------------------------------------
-	public function registroPaquete($datosModel, $tabla){
+	public function registroOferta($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, costo, clases, caducaDias) VALUES (:nombre, :costo, :clases, :vigencia)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (materia,docente,tipo) VALUES (:profe, :materia, :tipo)");
 
-		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(":costo", $datosModel["costo"], PDO::PARAM_INT);
-		$stmt->bindParam(":clases", $datosModel["clases"], PDO::PARAM_INT);
-		$stmt->bindParam(":vigencia", $datosModel["vigencia"], PDO::PARAM_INT);
+		$stmt->bindParam(":profe", $datosModel["profe"], PDO::PARAM_STR);
+		$stmt->bindParam(":materia", $datosModel["materia"], PDO::PARAM_STR);
+		$stmt->bindParam(":tipo", $datosModel["tipo"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 			return "success";
