@@ -21,7 +21,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Login  | Byso</title>
+	<title>CBTis 117 </title>
 
 </head>
 
@@ -37,13 +37,13 @@
 
 			<div class="content-wrap nopadding">
 
-				<div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: black center center no-repeat; background-size: cover;"></div>
+				<div class="section nopadding nomargin" style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; background: white center center no-repeat; background-size: cover;"></div>
 
 				<div class="section nobg full-screen nopadding nomargin">
 					<div class="container-fluid vertical-middle divcenter clearfix">
 
 						<div class="center">
-							<a href="index.html"><img src="loginAssets/images/BYSO.png" alt="BYSO Logo"></a>
+							<a href="index.html"><img src="loginAssets/images/cbtis.png" alt="Logo"></a>
 						</div>
 
 						<div class="card divcenter noradius noborder" style="max-width: 400px; background-color: rgba(255,255,255,0.93);">
@@ -71,12 +71,11 @@
 							        ?>
 								</form>
 
-								<div class="line line-sm"></div>
 
 							</div>
 						</div>
 
-						<div class="center dark" style="color: #DFDD43;"><small>Copyrights &copy; 2019 BYSO.</small></div>
+						<div class="center dark" style="color: blue;"><small>Copyrights &copy; 2019 CBTis 117.</small></div>
 
 					</div>
 				</div>

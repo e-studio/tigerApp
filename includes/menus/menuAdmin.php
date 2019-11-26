@@ -4,9 +4,9 @@
 
       <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
-      <img src="dist/img/rossy.png" alt="Eventos Logo" class="brand-image img-circle  elevation-3"
+      <img src="dist/img/tiger.png" alt="Logo" class="brand-image img-circle  elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Byso</span>
+      <span class="brand-text font-weight-light">CBTis 117</span>
     </a>
 
       <!-- Sidebar Menu -->
@@ -27,8 +27,8 @@
             <li class="nav-item"><a href="registrorecursos.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Recursos</a></li>
             <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fa fa-users"></i> Ofertas</a></li>
             <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-users"></i> Listado</a></li>
-            
-          
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
