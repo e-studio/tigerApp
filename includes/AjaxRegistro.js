@@ -1,20 +1,5 @@
-function buscarControl (Control) {
-  console.log("aaaaaaaa");
-    $.ajax({
-  type: 'GET',
-  url: 'includes/buscaControl.php?control=' + Control,
-  success: function (data) {
-      //var Respuesta = data.split("||");
-      console.log("aaaaaaaaaaaa");
-    //document.getElementById("nombre").value = Respuesta[1]; 
-  }
-});
-}
-
-
-/*
-function buscaPaquete(codigo) {
-      //alert(codigo);
+function findNoControl(Control) {
+      //console.log(Control);
         if (window.XMLHttpRequest) {
             var xmlhttp = new XMLHttpRequest();
         } else {
@@ -23,24 +8,25 @@ function buscaPaquete(codigo) {
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
 
-              //var responseArray = xmlhttp.responseText;
-              //alert(responseArray);
-              var responseArray = xmlhttp.responseText.split("||");
-              var costo = responseArray[0];
-              var clases = responseArray[1];
-              var caducidad = responseArray[2];
+              var Respuesta = xmlhttp.responseText.split("||");
 
-              document.getElementById("costo").value = costo;
-              document.getElementById("clases").value = clases;
-              document.getElementById("caducidad").value = caducidad;
-
-              document.querySelector("#ventaTitulo").innerHTML = '$ ' + numeral(costo).format('0,0.00');
-              document.querySelector('#btnComprar').disabled = false;
+              if (Respuesta[1] == ''){
+                  Swal.fire({
+                      title: "Número incorrecto!",
+                      type: "error",
+                      showCancelButton: false
+                    });
+                  //document.getElementById("noControl").focus();
+                  document.getElementById("noControl").value = '';
+              }
+              else{
+                  document.getElementById("nombre").innerHTML = Respuesta[3]+' '+ Respuesta[1]+ ' ' +Respuesta[2];
+                  document.getElementById("grupo").innerHTML = Respuesta[4]+Respuesta[5];
+                  document.getElementById("inscrito").innerHTML = 'Inscrito a '+Respuesta[6]+' Materias';
+              }
             }
         }
-        xmlhttp.open("GET","includes/buscaPaquete.php?codigo="+codigo,true);
+        xmlhttp.open("GET","includes/buscaControl.php?control=" + Control,true);
         xmlhttp.send();
-
     }
 
-*/

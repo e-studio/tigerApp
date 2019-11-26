@@ -8,7 +8,7 @@ class Controller{
 		$respuesta = Datos::mdlmaterias("materias");
 
 		foreach ($respuesta as $row => $item){
-			
+
 				echo  '<option>'.$item["nombre"].'</option>';
 		}
 	}
@@ -20,7 +20,7 @@ class Controller{
 		$respuesta = Datos::mdlBuscaDocentes("docentes");
 
 		foreach ($respuesta as $row => $item){
-			
+
 				echo  '<option>'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</option>';
 		}
 	}
@@ -31,17 +31,17 @@ class Controller{
 		$respuesta = Datos::mdlExtras("oferta");
 
 		foreach ($respuesta as $row => $item){
-			
+
 				echo  '<option >'.$item["materia"]."-".$item["docente"].'</option>';
 		}
   }
-  
+
   public function buscarecurso(){
 
 		$respuesta = Datos::mdlRecurso("oferta");
 
 		foreach ($respuesta as $row => $item){
-			
+
 				echo  '<option value = "'.$item["id"].'">'.$item["materia"]."-".$item["docente"].'</option>';
 		}
 	}
@@ -627,69 +627,25 @@ class Controller{
     }
 
 
-//     #REGISTRO DE PAQUETES
-// // 	#------------------------------------
-// 	public function registroPaquete(){
-
-// 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-// 			$socio = $_POST["nombre"];
-// 			$paquete = $_POST["paquete"];
-
-
-// 			$datosController = array( "socio"=>$_POST["nombre"],
-// 								      "paquete"=>$_POST["costo"],
-// 								      "clases"=>$_POST["clases"],
-// 								      "vigencia"=>$_POST["vigencia"]);
-
-// 			//"fechaIngreso" => date("Y-m-d"));
-
-// 			$respuesta = Datos::registroPaquete($datosController, "paquetes");
-
-// 			if($respuesta == "success"){
-// 				echo '<script type="text/javascript">Swal.fire({
-//                       title: "Datos Guardados!",
-//                       type: "success",
-//                       showCancelButton: false
-//                     })
-//                     .then((value) => {
-//                       if (value) {
-//                         window.location.href = "paquetes.php";
-//                       }
-//                     });</script> ';
-
-// 			}
-// 			else{
-// 				echo '<script type="text/javascript">Swal.fire({
-//                       title: "Error al guardar!",
-//                       type: "error",
-//                       showCancelButton: false
-//                     })
-//                     .then((value) => {
-//                       if (value) {
-//                         window.location.href = "paquetes.php";
-//                       }
-//                     });</script> ';
-// 			}
-// 		}
-// 	}
-
     #RETORNA LOS DATOS DEL ALUMNO CON EL NUMERO DE CONTROL TAL
 
     public function ctlBuscaControlAjax ($Tabla, $Control) {
-      
+
       $Resultado = Datos::mdlBuscaControlAjax($Tabla, $Control);
 
-      echo $Resultado[0];
-        echo "||";
-      echo $Resultado[1];
-        echo "||";
-      echo $Resultado[2];
-        echo "||";
-      echo $Resultado[3];
-        echo "||";
-      echo $Resultado[4]; 
-        echo "||";
-      echo $Resultado[5];
+          echo $Resultado[0];
+            echo "||";
+          echo $Resultado[1];
+            echo "||";
+          echo $Resultado[2];
+            echo "||";
+          echo $Resultado[3];
+            echo "||";
+          echo $Resultado[4];
+            echo "||";
+          echo $Resultado[5];
+          echo "||";
+          echo "2";
 
     }
 

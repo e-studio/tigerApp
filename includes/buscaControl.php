@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 $Control = $_GET["control"];
 
 require_once "controller.php";

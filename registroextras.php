@@ -15,6 +15,7 @@
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="shortcut icon" href="favicon.ico" />
 
   <title>Cbtis 117 | Extraordinarios</title>
 
@@ -24,6 +25,10 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- Sweet Alert 2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.16.3/dist/sweetalert2.all.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 
@@ -59,35 +64,17 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>No. de control</label>
-                                                <input type="text" class="form-control" placeholder="" id="noControl" name="noControl" onkeydown="buscarControl(this.value)">
+                                                <input type="text" class="form-control" placeholder="" id="noControl" name="noControl" onchange="findNoControl(this.value)">
                                             </div>
                                         </div>
+                                        <br>
 
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Nombre(s)</label>
-                                                <input type="text" readonly id="nombre" value="" class="form-control" name="nombre">
-                                            </div>
+                                        <div class="callout callout-danger">
 
-                                            <div class="col-md-4">
-                                                <label>Apellido paterno</label>
-                                                <input type="text" readonly id="apaterno" value="" class="form-control" name="apaterno">
-                                            </div>
+                                          <h5><p id="nombre"></p></h5>
 
-                                            <div class="col-md-4">
-                                                <label>Apellido materno</label>
-                                                <input type="text" readonly id="amaterno" value="" class="form-control" name="amaterno">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Especialidad</label>
-                                                <input type="text" readonly id="especialidad" value="" class="form-control" name="especialidad">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label>Grupo</label>
-                                                <input type="text" readonly id="grupo" value="" class="form-control" name="grupo">
-                                            </div>
+                                          <h5><p id="grupo"></p></h5>
+                                          <h5><p id="inscrito"></p></h5>
 
                                         </div>
                                     </div>
@@ -108,7 +95,7 @@
                                                     <option>Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
-                                                    $extras -> buscaextra();
+                                                    $extras -> buscaMateria();
                                                     ?>
                                                 </select>
                                             </div>
@@ -120,7 +107,7 @@
                                                     <option>Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
-                                                    $extras -> buscaextra();
+                                                    $extras -> buscaMateria();
                                                     ?>
                                                 </select>
                                             </div>
@@ -132,7 +119,7 @@
                                                     <option>Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
-                                                    $extras -> buscaextra();
+                                                    $extras -> buscaMateria();
                                                     ?>
                                                 </select>
                                             </div>
@@ -146,11 +133,11 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <!-- <div class="col-md-6">
                                         <button class="btn btn-success">Imprimir</button>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6">
-                                        <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
+                                        <input type="submit" disabled="true" class="btn btn-primary" name="guardar" value="Guardar">
                                     </div>
                                 </div>
                             </div>
@@ -177,5 +164,6 @@
 
 <script src="includes/validar.js"></script>
 <script src="includes/Cosas.js"></script>
+<script src="includes/AjaxRegistro.js"></script>
 </body>
 </html>

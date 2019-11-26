@@ -10,7 +10,7 @@ class Datos extends Conexion{
 			$stmt->execute();
 			return $stmt->fetchAll();
 			$stmt->close();
-		
+
 	}
 
 
@@ -20,7 +20,7 @@ class Datos extends Conexion{
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
-	}	
+	}
 
 	public function mdlExtras($tabla){
 
@@ -28,7 +28,7 @@ class Datos extends Conexion{
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
-	
+
 	}
 
 	public function mdlRecurso($tabla){
@@ -37,7 +37,7 @@ class Datos extends Conexion{
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
-	
+
 	}
 
 	#VERIFICA SI EL USUARIO EXISTE PARA INGRESAR AL SISTEMA
@@ -250,6 +250,18 @@ class Datos extends Conexion{
 		$stmt->close();
 	}
 
+	# Cuenta materias de extraordinario en que esta inscrito un alumno
+	public function mdlCuentaExtras($Control){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM registro ORDER BY nombres");
+
+		$Statement -> bindParam(":noControl", $Control, PDO::PARAM_STR);
+		$stmt->execute();
+
+		return $stmt->fetch();
+		$stmt->close();
+	}
+
 
 	#ACTUALIZA PAQUETE
 	#-------------------------------------
@@ -289,23 +301,21 @@ class Datos extends Conexion{
 	}
 
 	#
-
-
 	public function mdlBuscaControlAjax ($Tabla, $Control) {
 
-			$Control = $Control . "%";
+		$Control = $Control;
 
-			//echo $Control;
-
-		$Statement = Conexion::conectar() -> prepare("SELECT * FROM $Tabla WHERE noControl LIKE :noControl");
+		$Statement = Conexion::conectar() -> prepare("SELECT * FROM $Tabla WHERE noControl = :noControl");
 
 		$Statement -> bindParam(":noControl", $Control, PDO::PARAM_STR);
-			if ($Statement -> execute()) {
 
-				return $Statement -> fetch();
-			} else {
-				return "error";
-			}
+		if($Statement->execute()){
+			return $Statement -> fetch();
+		}
+		else{
+			return "error";
+		}
+
 
 		$Statement -> close();
 
