@@ -9,6 +9,7 @@ function findNoControl(Control) {
             if (this.readyState == 4 && this.status == 200) {
 
               var Respuesta = xmlhttp.responseText.split("||");
+              //alert(Respuesta);
 
               if (Respuesta[1] == ''){
                   Swal.fire({
@@ -22,7 +23,7 @@ function findNoControl(Control) {
               else{
                   document.getElementById("nombre").innerHTML = Respuesta[3]+' '+ Respuesta[1]+ ' ' +Respuesta[2];
                   document.getElementById("grupo").innerHTML = Respuesta[4]+Respuesta[5];
-                  document.getElementById("inscrito").innerHTML = 'Inscrito a '+Respuesta[6]+' Materias';
+                  document.getElementById("inscrito").innerHTML = 'Materias inscritas : '+Respuesta[6];
               }
             }
         }

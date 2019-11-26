@@ -253,9 +253,9 @@ class Datos extends Conexion{
 	# Cuenta materias de extraordinario en que esta inscrito un alumno
 	public function mdlCuentaExtras($Control){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM registro ORDER BY nombres");
+		$stmt = Conexion::conectar()->prepare("SELECT COUNT(id) FROM `extras` WHERE `noControl`= :noControl");
 
-		$Statement -> bindParam(":noControl", $Control, PDO::PARAM_STR);
+		$stmt -> bindParam(":noControl", $Control, PDO::PARAM_STR);
 		$stmt->execute();
 
 		return $stmt->fetch();

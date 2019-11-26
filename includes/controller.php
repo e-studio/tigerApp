@@ -631,6 +631,9 @@ class Controller{
 
     public function ctlBuscaControlAjax ($Tabla, $Control) {
 
+      $inscrito = Datos::mdlCuentaExtras($Control);
+      $insc = $inscrito[0];
+
       $Resultado = Datos::mdlBuscaControlAjax($Tabla, $Control);
 
           echo $Resultado[0];
@@ -645,7 +648,7 @@ class Controller{
             echo "||";
           echo $Resultado[5];
           echo "||";
-          echo "2";
+          echo $insc;
 
     }
 
