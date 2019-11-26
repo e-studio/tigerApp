@@ -13,13 +13,36 @@ class Controller{
 		}
 	}
 
+
+
 	public function buscaProfesor(){
 
 		$respuesta = Datos::mdlBuscaDocentes("docentes");
 
 		foreach ($respuesta as $row => $item){
 			
-				echo  '<option>'.$item["nombres"]." ".$item["apellidoPat"]." ".$item[apellidoMat].'</option>';
+				echo  '<option>'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</option>';
+		}
+	}
+
+
+  public function buscaextra(){
+
+		$respuesta = Datos::mdlExtras("oferta");
+
+		foreach ($respuesta as $row => $item){
+			
+				echo  '<option >'.$item["materia"]."-".$item["docente"].'</option>';
+		}
+  }
+  
+  public function buscarecurso(){
+
+		$respuesta = Datos::mdlRecurso("oferta");
+
+		foreach ($respuesta as $row => $item){
+			
+				echo  '<option value = "'.$item["id"].'">'.$item["materia"]."-".$item["docente"].'</option>';
 		}
 	}
 
@@ -387,7 +410,47 @@ class Controller{
                     });</script> ';
 			}
 		}
-	}
+  }
+  public function actualizaOferta(){
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+      $datosController = array( "id"=>$_POST["id"],
+                      "profe"=>$_POST["profe"],
+								      "materia"=>$_POST["materia"],
+								      "tipo"=>$_POST["tipo"]);
+
+			//"fechaIngreso" => date("Y-m-d"));
+
+			$respuesta = Datos:: MdlactOferta($datosController, "oferta");
+
+			if($respuesta == "success"){
+				echo '<script type="text/javascript">Swal.fire({
+                      title: "Datos Guardados!",
+                      type: "success",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "listaoferta.php";
+                      }
+                    });</script> ';
+
+			}
+			else{
+				echo '<script type="text/javascript">Swal.fire({
+                      title: "Error al guardar!",
+                      type: "error",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "paquetes.php";
+                      }
+                    });</script> ';
+			}
+		}
+  }
 
 	# ACTUALIZA PAQUETES
     #------------------------------------
@@ -434,11 +497,11 @@ class Controller{
 
     #BORRA PAQUETE
     #------------------------------------
-    public function borraPaquete(){
+    public function borraoferta(){
         if (isset($_GET['idBorrar'])){
             $datosController = $_GET['idBorrar'];
 
-            $respuesta = Datos::borrarRegistro($datosController,"paquetes");
+            $respuesta = Datos::borrarRegistro($datosController,"oferta");
             if ($respuesta == "success"){
             echo '<script type="text/javascript">Swal.fire({
                       title: "Registro Borrado!",
@@ -447,7 +510,7 @@ class Controller{
                     })
                     .then((value) => {
                       if (value) {
-                        window.location.href = "paquetes.php";
+                        window.location.href = "listaoferta.php";
                       }
                     });</script> ';
 
@@ -486,7 +549,7 @@ class Controller{
                   <td>'.$item["tipo"].'</td>
                   <td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                       <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
-                      <a href="paquetes.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
+                      <a href="listaoferta.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
                   </td>
                 </tr>';
         }

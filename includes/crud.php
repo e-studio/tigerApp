@@ -10,7 +10,9 @@ class Datos extends Conexion{
 			$stmt->execute();
 			return $stmt->fetchAll();
 			$stmt->close();
-		}
+		
+	}
+
 
 	public function mdlBuscaDocentes($tabla){
 
@@ -20,7 +22,23 @@ class Datos extends Conexion{
 		$stmt->close();
 	}	
 
+	public function mdlExtras($tabla){
 
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = 'Extraordinario'");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	
+	}
+
+	public function mdlRecurso($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = 'Recurso'");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	
+	}
 
 	#VERIFICA SI EL USUARIO EXISTE PARA INGRESAR AL SISTEMA
 	#--------------------------------------------------------
@@ -171,7 +189,7 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroOferta($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (materia,docente,tipo) VALUES (:profe, :materia, :tipo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (materia,docente,tipo) VALUES ( :materia, :profe, :tipo)");
 
 		$stmt->bindParam(":profe", $datosModel["profe"], PDO::PARAM_STR);
 		$stmt->bindParam(":materia", $datosModel["materia"], PDO::PARAM_STR);
@@ -185,6 +203,25 @@ class Datos extends Conexion{
 		}
 		$stmt->close();
 	}
+
+	public function MdlactOferta($datosModel, $tabla){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET `materia`= :materia,`docente`= :profe,`tipo`= :tipo WHERE id= :id");
+
+		$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_INT);
+		$stmt->bindParam(":profe", $datosModel["profe"], PDO::PARAM_STR);
+		$stmt->bindParam(":materia", $datosModel["materia"], PDO::PARAM_STR);
+		$stmt->bindParam(":tipo", $datosModel["tipo"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			return "success";
+		}
+		else{
+			return "error";
+		}
+		$stmt->close();
+	}
+
 
 	#COMPRA DE PAQUETE
 	#-------------------------------------

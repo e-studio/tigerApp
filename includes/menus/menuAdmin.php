@@ -25,8 +25,8 @@
 
             <li class="nav-item"><a href="registroextras.php" class="nav-link"><i class="fa fa-file-alt"></i> Extraordinarios</a></li>
             <li class="nav-item"><a href="registrorecursos.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Recursos</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-users"></i> Ofertas</a></li>
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-users"></i> Listado</a></li>
+            <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fa fa-users"></i> Ofertas</a></li>
+            <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-users"></i> Listado</a></li>
             
           
         </ul>

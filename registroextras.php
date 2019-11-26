@@ -2,8 +2,10 @@
 	session_start();
 	if (!$_SESSION["valido"]) {
 		header("location:index.php");
-		exit();
-	}
+        exit();
+    }
+    require_once "includes/controller.php";
+    require_once "includes/crud.php";
 ?>
 
 <!DOCTYPE html>
@@ -64,27 +66,27 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Nombre(s)</label>
-                                                <input type="text" readonly id="nombre" value="" class="form-control">
+                                                <input type="text" readonly id="nombre" value="" class="form-control" name="nombre">
                                             </div>
 
                                             <div class="col-md-4">
                                                 <label>Apellido paterno</label>
-                                                <input type="text" readonly id="apaterno" value="" class="form-control">
+                                                <input type="text" readonly id="apaterno" value="" class="form-control" name="apaterno">
                                             </div>
 
                                             <div class="col-md-4">
                                                 <label>Apellido materno</label>
-                                                <input type="text" readonly id="amaterno" value="" class="form-control">
+                                                <input type="text" readonly id="amaterno" value="" class="form-control" name="amaterno">
                                             </div> 
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Especialidad</label>
-                                                <input type="text" readonly id="especialidad" value="" class="form-control">
+                                                <input type="text" readonly id="especialidad" value="" class="form-control" name="especialidad">
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Grupo</label>
-                                                <input type="text" readonly id="grupo" value="" class="form-control">
+                                                <input type="text" readonly id="grupo" value="" class="form-control" name="grupo">
                                             </div>
 
                                         </div>
@@ -102,19 +104,37 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>Extraordinario 1</label>
-                                                <select class="form-control"></select>
+                                                <select class="form-control" name="extra1">
+                                                    <option>Seleccione</option>
+                                                    <?php 
+                                                    $extras = new Controller(); 
+                                                    $extras -> buscaextra();
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>Extraordinario 2</label>
-                                                <select class="form-control"></select>
+                                                <select class="form-control" name="extra2">
+                                                    <option>Seleccione</option>
+                                                    <?php 
+                                                    $extras = new Controller(); 
+                                                    $extras -> buscaextra();
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>Extraordinario 3</label>
-                                                <select class="form-control"></select>
+                                                <select class="form-control" name="extra3">
+                                                    <option>Seleccione</option>
+                                                    <?php 
+                                                    $extras = new Controller(); 
+                                                    $extras -> buscaextra();
+                                                    ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +157,6 @@
                             <div class="col-md-5">
                             </div>
                         </div>
-
                     </form>
             </div>
 

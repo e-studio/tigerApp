@@ -51,8 +51,8 @@ require_once "includes/crud.php";
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Materia</th>
                   <th>Docente</th>
+                  <th>Materia</th>
                   <th>Tipo</th>
                   <th>Acciones</th>
                 </tr>
@@ -61,17 +61,16 @@ require_once "includes/crud.php";
                   <?php
                     $registro = new Controller();
                     $registro -> listaoferta();
-                    $registro -> borraPaquete();
+                    $registro -> borraoferta();
 
                   ?>
 
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Nombre</th>
-                  <th>Costo</th>
-                  <th>Clases</th>
-                  <th>Vigencia</th>
+                  <th>Docente</th>
+                  <th>Materia</th>
+                  <th>Tipo</th>
                   <th>Acciones</th>
                 </tr>
                 </tfoot>

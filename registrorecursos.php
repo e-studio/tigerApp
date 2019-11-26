@@ -2,8 +2,11 @@
 	session_start();
 	if (!$_SESSION["valido"]) {
 		header("location:index.php");
-		exit();
-	}
+        exit();
+        
+    }
+    require_once "includes/controller.php";
+    require_once "includes/crud.php";
 ?>
 
 <!DOCTYPE html>
@@ -102,13 +105,28 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>Recurso 1</label>
-                                                <select class="form-control"></select>
+                                                <select class="form-control">
+                                                    <option>Seleccione</option>
+                                                    <?php 
+                                                    $extras = new Controller(); 
+                                                    $extras -> buscarecurso();
+                                                    ?>
+
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>Recurso 2</label>
-                                                <select class="form-control"></select>
+                                                <select class="form-control">
+
+                                                    <option>Seleccione</option>
+                                                    <?php 
+                                                    $extras = new Controller(); 
+                                                    $extras -> buscarecurso();
+                                                    ?>
+
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

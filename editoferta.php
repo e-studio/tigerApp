@@ -61,12 +61,36 @@ $idBuscar = $_REQUEST['idEditar'];
                   <div class="form-group">
                     <div class="row">
                       <div class="col-4">
-                        <label for="exampleInputPassword1">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" value ="<?php echo $respuesta['materia'];?>">
+                        <label for="exampleInputPassword1">Materia</label>
+                        <select class="form-control" required name="materia">
+                           <option value="">Selecione</option>
+                           <option selected><?php echo $respuesta['materia'];?></option>
+                           <?php 
+	                        	$materia = new Controller(); 
+	                        	$materia -> buscaMateria();
+	                        	?>
+                     		</select>
                       </div>
                       <div class="col-4">
-                         <label for="exampleInputPassword1">Costo</label>
-                        <input type="text" class="form-control" name="costo" value ="<?php echo $respuesta['docente'];?>">
+                         <label for="exampleInputPassword1">Docente</label>
+                         <select class="form-control" required name="profe">
+                           <option value="">Selecione</option>
+                           <option selected><?php echo $respuesta['docente'];?></option>
+                           <?php 
+	                        	$materia = new Controller(); 
+	                        	$materia -> buscaProfesor();
+	                        	?>
+                     		</select>
+                         </div>
+
+                         <div class="col-4">
+                         <label for="exampleInputPassword1">Tipo</label>
+                        	<select class="form-control" required name="tipo">
+                            <option value="">tipo</option>
+                            <option selected><?php echo $respuesta['tipo'];?></option>
+                            <option value="Extraordinario">Extraordinario</option>
+                            <option value="Recurso">Recurso</option>
+	                        </select>
                       </div>
                     </div>
                   </div>
@@ -98,7 +122,7 @@ $idBuscar = $_REQUEST['idEditar'];
        <?php
 
        $ingreso = new Controller();
-       $ingreso -> actualizaPaquete();
+       $ingreso -> actualizaOferta();
 
        ?>
 
