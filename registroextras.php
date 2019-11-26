@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Control Panel | Tigres</title>
+  <title>Cbtis 117 | Extraordinarios</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -48,7 +48,7 @@
             <div class="content">
                 <div class="container-fluid">
                     <form role="form" method="POST">
-                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card card-primary">
@@ -62,7 +62,7 @@
                                                 <input type="text" class="form-control" placeholder="" id="noControl" name="noControl" onkeydown="buscarControl(this.value)">
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Nombre(s)</label>
@@ -77,7 +77,7 @@
                                             <div class="col-md-4">
                                                 <label>Apellido materno</label>
                                                 <input type="text" readonly id="amaterno" value="" class="form-control" name="amaterno">
-                                            </div> 
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -92,7 +92,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               
+
 
                             </div>
                             <div class="col-md-6">
@@ -106,8 +106,8 @@
                                                 <label>Extraordinario 1</label>
                                                 <select class="form-control" name="extra1">
                                                     <option>Seleccione</option>
-                                                    <?php 
-                                                    $extras = new Controller(); 
+                                                    <?php
+                                                    $extras = new Controller();
                                                     $extras -> buscaextra();
                                                     ?>
                                                 </select>
@@ -118,8 +118,8 @@
                                                 <label>Extraordinario 2</label>
                                                 <select class="form-control" name="extra2">
                                                     <option>Seleccione</option>
-                                                    <?php 
-                                                    $extras = new Controller(); 
+                                                    <?php
+                                                    $extras = new Controller();
                                                     $extras -> buscaextra();
                                                     ?>
                                                 </select>
@@ -130,8 +130,8 @@
                                                 <label>Extraordinario 3</label>
                                                 <select class="form-control" name="extra3">
                                                     <option>Seleccione</option>
-                                                    <?php 
-                                                    $extras = new Controller(); 
+                                                    <?php
+                                                    $extras = new Controller();
                                                     $extras -> buscaextra();
                                                     ?>
                                                 </select>

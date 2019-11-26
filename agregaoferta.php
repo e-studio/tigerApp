@@ -1,5 +1,3 @@
-
-
 <?php session_start();
 if(!$_SESSION["valido"]){
   header("location:index.php");
@@ -15,7 +13,7 @@ require_once "includes/crud.php";
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Agregar oferta</title>
+  <title>Cbtis 117 | Oferta Recursos</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
@@ -74,8 +72,8 @@ require_once "includes/crud.php";
                         <label for="exampleInputPassword1">Materia</label>
                         	<select class="form-control" required name="materia">
                        		<option value="">Selecione</option>
-                           <?php 
-	                        	$materia = new Controller(); 
+                           <?php
+	                        	$materia = new Controller();
 	                        	$materia -> buscaMateria();
 	                        	?>
                      		</select>
@@ -84,8 +82,8 @@ require_once "includes/crud.php";
                          <label for="exampleInputPassword1">Profesor</label>
 	                        <select class="form-control" required name="profe">
 	                        	<option value="">Profe</option>
-	                        	<?php 
-	                        	$profes = new Controller(); 
+	                        	<?php
+	                        	$profes = new Controller();
 	                        	$profes -> buscaProfesor();
 	                        	?>
 	                        </select>
@@ -101,7 +99,7 @@ require_once "includes/crud.php";
                     </div>
                   </div>
 
-                  
+
                   </div>
 
                 </div>
