@@ -252,6 +252,28 @@ class Datos extends Conexion{
 	}
 
 	#
+
+
+	public function mdlBuscaControlAjax ($Tabla, $Control) {
+
+			$Control = $Control . "%";
+
+			//echo $Control;
+
+		$Statement = Conexion::conectar() -> prepare("SELECT * FROM $Tabla WHERE noControl LIKE :noControl");
+
+		$Statement -> bindParam(":noControl", $Control, PDO::PARAM_STR);
+			if ($Statement -> execute()) {
+
+				return $Statement -> fetch();
+			} else {
+				return "error";
+			}
+
+		$Statement -> close();
+
+	}
+
 	#-------------------------------------
 
 	public function buscaPaqueteAjax($tabla, $codigo){

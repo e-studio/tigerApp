@@ -1,5 +1,5 @@
 <?php
-require 'includes/crud.php';
+require 'crud.php';
 
 class Controller{
 
@@ -609,6 +609,26 @@ class Controller{
 // 			}
 // 		}
 // 	}
+
+    #RETORNA LOS DATOS DEL ALUMNO CON EL NUMERO DE CONTROL TAL
+
+    public function ctlBuscaControlAjax ($Tabla, $Control) {
+      
+      $Resultado = Datos::mdlBuscaControlAjax($Tabla, $Control);
+
+      echo $Resultado[0];
+        echo "||";
+      echo $Resultado[1];
+        echo "||";
+      echo $Resultado[2];
+        echo "||";
+      echo $Resultado[3];
+        echo "||";
+      echo $Resultado[4]; 
+        echo "||";
+      echo $Resultado[5];
+
+    }
 
 
 	    // BUSCA TODAS LAS COMPRAS QUE SE HAYAN HECHO DE UN PRODUCTO EN ESPECIFICO
