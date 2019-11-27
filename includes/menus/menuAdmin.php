@@ -23,10 +23,32 @@
           </a>
         </li>
 
-            <li class="nav-item"><a href="registroextras.php" class="nav-link"><i class="fa fa-file-alt"></i> Extraordinarios</a></li>
-            <li class="nav-item"><a href="registrorecursos.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Recursos</a></li>
-            <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fa fa-users"></i> Ofertas</a></li>
-            <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-users"></i> Listado</a></li>
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link"><i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>Extraordinarios<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="registroextras.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Inscripcion</a></li>
+            <li class="nav-item"><a href="listaCancelar.php" class="nav-link"><i class="fa fa-list-ol nav-icon"></i> Listas</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link"><i class="nav-icon fas fa-file-invoice-dollar"></i>
+            <p>Recursos<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="registrorecursos.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Inscripcion</a></li>
+            <li class="nav-item"><a href="listaCancelar.php" class="nav-link"><i class="fa fa-list-ol nav-icon"></i> Listas</a></li>
+            <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fas fa-folder-open"></i> Abrir </a></li>
+            <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-users"></i> Gestionar</a></li>
+          </ul>
+        </li>
+
+
+
+
+
 
 
         </ul>
