@@ -14,17 +14,10 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li>
-          <a href="inicio.php">
-            <i class="fa fa-dashboard"></i> <span>Inicio</span>
-            <span class="pull-right-container">
-              <!-- <i class="fa fa-angle-left pull-right"></i> -->
-            </span>
-          </a>
-        </li>
+
 
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link"><i class="nav-icon fas fa-file-invoice-dollar"></i>
+          <a href="#" class="nav-link"><i class="nav-icon fa fa-step-backward"></i>
             <p>Extraordinarios<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
@@ -34,14 +27,14 @@
         </li>
 
         <li class="nav-item has-treeview">
-          <a href="#" class="nav-link"><i class="nav-icon fas fa-file-invoice-dollar"></i>
+          <a href="#" class="nav-link"><i class="nav-icon fa fa-undo"></i>
             <p>Recursos<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item"><a href="registrorecursos.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Inscripcion</a></li>
             <li class="nav-item"><a href="listaCancelar.php" class="nav-link"><i class="fa fa-list-ol nav-icon"></i> Listas</a></li>
             <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fas fa-folder-open"></i> Abrir </a></li>
-            <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-users"></i> Gestionar</a></li>
+            <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-server"></i> Gestionar</a></li>
           </ul>
         </li>
 

@@ -16,7 +16,7 @@ class Datos extends Conexion{
 
 	public function mdlBuscaDocentes($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombres");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre");
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
@@ -33,7 +33,7 @@ class Datos extends Conexion{
 
 	public function mdlRecurso($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE tipo = 'Recurso'");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
@@ -224,11 +224,10 @@ class Datos extends Conexion{
 	#-------------------------------------
 	public function registroOferta($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (materia,docente,tipo) VALUES ( :materia, :profe, :tipo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (materia,docente) VALUES ( :materia, :profe)");
 
 		$stmt->bindParam(":profe", $datosModel["profe"], PDO::PARAM_STR);
 		$stmt->bindParam(":materia", $datosModel["materia"], PDO::PARAM_STR);
-		$stmt->bindParam(":tipo", $datosModel["tipo"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 			return "success";
@@ -241,12 +240,11 @@ class Datos extends Conexion{
 
 	public function MdlactOferta($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET `materia`= :materia,`docente`= :profe,`tipo`= :tipo WHERE id= :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET `materia`= :materia,`docente`= :profe WHERE id= :id");
 
 		$stmt->bindParam(":id",$datosModel["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":profe", $datosModel["profe"], PDO::PARAM_STR);
 		$stmt->bindParam(":materia", $datosModel["materia"], PDO::PARAM_STR);
-		$stmt->bindParam(":tipo", $datosModel["tipo"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 			return "success";

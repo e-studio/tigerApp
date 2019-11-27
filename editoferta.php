@@ -32,7 +32,7 @@ $idBuscar = $_REQUEST['idEditar'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Editar Paquete</h1>
+            <h1 class="m-0 text-dark">Editar Recurso</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -50,7 +50,7 @@ $idBuscar = $_REQUEST['idEditar'];
 
         <div class="row">
 
-          <div class="col-md-12">
+          <div class="col-md-8">
             <!-- general form elements -->
             <div class="card card-info">
               <div class="card-header">
@@ -60,42 +60,42 @@ $idBuscar = $_REQUEST['idEditar'];
                 <div class="card-body">
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-4">
+                      <div class="col-6">
                         <label for="exampleInputPassword1">Materia</label>
                         <select class="form-control" required name="materia">
                            <option value="">Selecione</option>
                            <option selected><?php echo $respuesta['materia'];?></option>
-                           <?php 
-	                        	$materia = new Controller(); 
+                           <?php
+	                        	$materia = new Controller();
 	                        	$materia -> buscaMateria();
 	                        	?>
                      		</select>
                       </div>
-                      <div class="col-4">
+                      <div class="col-6">
                          <label for="exampleInputPassword1">Docente</label>
                          <select class="form-control" required name="profe">
                            <option value="">Selecione</option>
                            <option selected><?php echo $respuesta['docente'];?></option>
-                           <?php 
-	                        	$materia = new Controller(); 
+                           <?php
+	                        	$materia = new Controller();
 	                        	$materia -> buscaProfesor();
 	                        	?>
                      		</select>
                          </div>
 
-                         <div class="col-4">
+<!--                          <div class="col-4">
                          <label for="exampleInputPassword1">Tipo</label>
                         	<select class="form-control" required name="tipo">
                             <option value="">tipo</option>
-                            <option selected><?php echo $respuesta['tipo'];?></option>
+                            <option selected><?php // echo $respuesta['tipo'];?></option>
                             <option value="Extraordinario">Extraordinario</option>
                             <option value="Recurso">Recurso</option>
 	                        </select>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
 
-                  
+
 
                 </div>
             </div>

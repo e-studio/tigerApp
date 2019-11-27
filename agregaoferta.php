@@ -44,7 +44,7 @@ require_once "includes/crud.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Paquete Nuevo</h1>
+            <h1 class="m-0 text-dark">Crear nuevo recurso</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -62,9 +62,6 @@ require_once "includes/crud.php";
           <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Oferta</h3>
-              </div>
               <!-- /.card-header -->
                 <div class="card-body">
                   <div class="form-group">
@@ -80,23 +77,23 @@ require_once "includes/crud.php";
                      		</select>
                       </div>
                       <div class="col-4">
-                         <label for="exampleInputPassword1">Profesor</label>
+                         <label for="exampleInputPassword1">Docente</label>
 	                        <select class="form-control" required name="profe">
-	                        	<option value="">Profe</option>
+	                        	<option value="">Seleccione</option>
 	                        	<?php
 	                        	$profes = new Controller();
 	                        	$profes -> buscaProfesor();
 	                        	?>
 	                        </select>
                       </div>
-                      <div class="col-4">
+                      <!-- <div class="col-4">
                          <label for="exampleInputPassword1">Tipo</label>
                         	<select class="form-control" required name="tipo">
                             <option value="">tipo</option>
                             <option value="Extraordinario">Extraordinario</option>
                             <option value="Recurso">Recurso</option>
 	                        </select>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
 

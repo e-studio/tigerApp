@@ -21,7 +21,7 @@ class Controller{
 
 		foreach ($respuesta as $row => $item){
 
-				echo  '<option>'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</option>';
+				echo  '<option value="'.$item["nombre"].'">'.$item["nombre"].'</option>';
 		}
 	}
 
@@ -42,7 +42,7 @@ class Controller{
 
 		foreach ($respuesta as $row => $item){
 
-				echo  '<option value = "'.$item["id"].'">'.$item["materia"]."-".$item["docente"].'</option>';
+				echo  '<option value = "'.$item["id"].'">'.$item["materia"]." - ".$item["docente"].'</option>';
 		}
 	}
 
@@ -453,8 +453,7 @@ class Controller{
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			$datosController = array( "profe"=>$_POST["profe"],
-								      "materia"=>$_POST["materia"],
-								      "tipo"=>$_POST["tipo"]);
+								      "materia"=>$_POST["materia"]);
 
 			//"fechaIngreso" => date("Y-m-d"));
 
@@ -493,8 +492,7 @@ class Controller{
 
       $datosController = array( "id"=>$_POST["id"],
                       "profe"=>$_POST["profe"],
-								      "materia"=>$_POST["materia"],
-								      "tipo"=>$_POST["tipo"]);
+								      "materia"=>$_POST["materia"]);
 
 			//"fechaIngreso" => date("Y-m-d"));
 
