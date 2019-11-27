@@ -46,37 +46,48 @@ class Controller{
 		}
 	}
 
-// 	#REGISTRO DE SOCIOS
-// 	#------------------------------------
-	public function registroSocio(){
 
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//  #REGISTRO DE EXTRAORDINARIO
+    # id  noControl  nombre  grupo   docente   materia
+//  #------------------------------------
+  public function registroExtra(){
 
-			$datosController = array( "nombre"=>$_POST["nombre"],
-								      "aPaterno"=>$_POST["aPaterno"],
-								      "aMaterno"=>$_POST["aMaterno"],
-								      "email"=>$_POST["email"],
-								      "telefono"=>$_POST["telefono"],
-								      "activo"=>$_POST["activo"],
-								  	  "fechaIngreso" => date("Y-m-d"));
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $noControl = $_POST["noControl"];
+        $nombreAlumno = $_POST["nombreAlumno"];
+        $grupoAlumno = $_POST["grupoAlumno"];
 
-			$respuesta = Datos::registroSocio($datosController, "socios");
+      if ($_POST["extra1"] != "" ){
+          $datosController = array( "noControl"=>$noControl,
+                      "nombreAlumno"=>$nombreAlumno,
+                      "grupoAlumno"=>$grupoAlumno,
+                      "extra"=>$_POST["extra1"]);
+          $respuesta1 = Datos::registroExtra($datosController);
+        }
 
-			if($respuesta == "success"){
-				echo '<script type="text/javascript">Swal.fire({
-                      title: "Datos Guardados!",
-                      type: "success",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "socios.php";
-                      }
-                    });</script> ';
+        if ($_POST["extra2"] != "" ){
+          $datosController = array( "noControl"=>$noControl,
+                      "nombreAlumno"=>$nombreAlumno,
+                      "grupoAlumno"=>$grupoAlumno,
+                      "extra"=>$_POST["extra2"]);
+          $respuesta2 = Datos::registroExtra($datosController);
+        }
 
-			}
-			else{
-				echo '<script type="text/javascript">Swal.fire({
+
+        if ($_POST["extra3"] != "" ){
+          $datosController = array( "noControl"=>$noControl,
+                      "nombreAlumno"=>$nombreAlumno,
+                      "grupoAlumno"=>$grupoAlumno,
+                      "extra"=>$_POST["extra3"]);
+          $respuesta3 = Datos::registroExtra($datosController);
+        }
+
+      if($respuesta1 == "success" || $respuesta2 == "success" || $respuesta3 == "success"){
+        echo '<script type="text/javascript">window.open("imprimeCitas.php?noControl='.$noControl.'&nombre='.$nombreAlumno.'&grupo='.$grupoAlumno.'", "", "width=800, height=600") </script> ';
+
+      }
+      else{
+        echo '<script type="text/javascript">Swal.fire({
                       title: "Error al guardar!",
                       type: "error",
                       showCancelButton: false
@@ -87,98 +98,163 @@ class Controller{
                       }
                     });</script> ';
 
-			}
-		}
-	}
+      }
+    }
+  }
+
+// #IMPRESION DE MATERIAS A LAS QUE SE INSCRIBIO UN ALUMNO
+//     #------------------------------------
+    public function imprimirExtras($noControl){
+
+        $respuesta = Datos::imprimirExtras($noControl);
+        $cont =1;
+
+        foreach ($respuesta as $row => $item){
+        echo '<tr>
+                  <td style="text-align: center">'.$cont.'</td>
+                  <td style="text-align: left">'.$item["materia"].'</td>
+            </tr>';
+            $cont++;
+        }
+        //echo '<tr style="text-align: right">
+        //        <td colspan="4">'. ($cont-1) .' citas en total para esta sesion </td>
+        //      </tr>';
+
+    }
+
+// 	#REGISTRO DE SOCIOS
+// 	#------------------------------------
+	// public function registroSocio(){
+
+	// 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	// 		$datosController = array( "nombre"=>$_POST["nombre"],
+	// 							      "aPaterno"=>$_POST["aPaterno"],
+	// 							      "aMaterno"=>$_POST["aMaterno"],
+	// 							      "email"=>$_POST["email"],
+	// 							      "telefono"=>$_POST["telefono"],
+	// 							      "activo"=>$_POST["activo"],
+	// 							  	  "fechaIngreso" => date("Y-m-d"));
+
+	// 		$respuesta = Datos::registroSocio($datosController, "socios");
+
+	// 		if($respuesta == "success"){
+	// 			echo '<script type="text/javascript">Swal.fire({
+ //                      title: "Datos Guardados!",
+ //                      type: "success",
+ //                      showCancelButton: false
+ //                    })
+ //                    .then((value) => {
+ //                      if (value) {
+ //                        window.location.href = "socios.php";
+ //                      }
+ //                    });</script> ';
+
+	// 		}
+	// 		else{
+	// 			echo '<script type="text/javascript">Swal.fire({
+ //                      title: "Error al guardar!",
+ //                      type: "error",
+ //                      showCancelButton: false
+ //                    })
+ //                    .then((value) => {
+ //                      if (value) {
+ //                        window.location.href = "socios.php";
+ //                      }
+ //                    });</script> ';
+
+	// 		}
+	// 	}
+	// }
 
 	# ACTUALIZA SOCIOS
     #------------------------------------
 
-    public function actualizaSocio(){
+   //  public function actualizaSocio(){
 
-        if(isset($_POST["actualizar"])){
+   //      if(isset($_POST["actualizar"])){
 
-            $datosController = array("id"=>$_POST["id"],
-                                  "nombre"=>$_POST["nombre"],
-                                  "aPaterno"=>$_POST["aPaterno"],
-                                  "aMaterno"=>$_POST["aMaterno"],
-                                  "telefono"=>$_POST["telefono"],
-                                  "email"=>$_POST["email"],
-                                  "activo"=>$_POST["activo"],
-                                  "fechaIngreso"=>$_POST["fechaIngreso"],
-                                  "clases"=>$_POST["clases"],
-                                  "caducidad"=>$_POST["caducidad"]);
+   //          $datosController = array("id"=>$_POST["id"],
+   //                                "nombre"=>$_POST["nombre"],
+   //                                "aPaterno"=>$_POST["aPaterno"],
+   //                                "aMaterno"=>$_POST["aMaterno"],
+   //                                "telefono"=>$_POST["telefono"],
+   //                                "email"=>$_POST["email"],
+   //                                "activo"=>$_POST["activo"],
+   //                                "fechaIngreso"=>$_POST["fechaIngreso"],
+   //                                "clases"=>$_POST["clases"],
+   //                                "caducidad"=>$_POST["caducidad"]);
 
-            $respuesta = Datos::actualizaSocio($datosController, "socios");
+   //          $respuesta = Datos::actualizaSocio($datosController, "socios");
 
-            if ($respuesta=="ok"){
+   //          if ($respuesta=="ok"){
 
-            	echo '<script type="text/javascript">Swal.fire({
-                      title: "Datos Actualizados!",
-                      type: "success",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "socios.php";
-                      }
-                    });</script> ';
+   //          	echo '<script type="text/javascript">Swal.fire({
+   //                    title: "Datos Actualizados!",
+   //                    type: "success",
+   //                    showCancelButton: false
+   //                  })
+   //                  .then((value) => {
+   //                    if (value) {
+   //                      window.location.href = "socios.php";
+   //                    }
+   //                  });</script> ';
 
-			}
-			else{
-				echo '<script type="text/javascript">Swal.fire({
-                      title: "Error al guardar!",
-                      type: "error",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "socios.php";
-                      }
-                    });</script> ';
+			// }
+			// else{
+			// 	echo '<script type="text/javascript">Swal.fire({
+   //                    title: "Error al guardar!",
+   //                    type: "error",
+   //                    showCancelButton: false
+   //                  })
+   //                  .then((value) => {
+   //                    if (value) {
+   //                      window.location.href = "socios.php";
+   //                    }
+   //                  });</script> ';
 
-			}
+			// }
 
-        }
-    }
+   //      }
+   //  }
 
 
     #BORRA SOCIOS
     #------------------------------------
-    public function borraSocio(){
-        if (isset($_GET['idBorrar'])){
-            $datosController = $_GET['idBorrar'];
+   //  public function borraSocio(){
+   //      if (isset($_GET['idBorrar'])){
+   //          $datosController = $_GET['idBorrar'];
 
-            $respuesta = Datos::borrarRegistro($datosController,"socios");
-            if ($respuesta == "success"){
-            echo '<script type="text/javascript">Swal.fire({
-                      title: "Registro Borrado!",
-                      type: "success",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "socios.php";
-                      }
-                    });</script> ';
+   //          $respuesta = Datos::borrarRegistro($datosController,"socios");
+   //          if ($respuesta == "success"){
+   //          echo '<script type="text/javascript">Swal.fire({
+   //                    title: "Registro Borrado!",
+   //                    type: "success",
+   //                    showCancelButton: false
+   //                  })
+   //                  .then((value) => {
+   //                    if (value) {
+   //                      window.location.href = "socios.php";
+   //                    }
+   //                  });</script> ';
 
-			}
-			else{
-				echo '<script type="text/javascript">Swal.fire({
-                      title: "Error al borrar!",
-                      type: "error",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "socios.php";
-                      }
-                    });</script> ';
+			// }
+			// else{
+			// 	echo '<script type="text/javascript">Swal.fire({
+   //                    title: "Error al borrar!",
+   //                    type: "error",
+   //                    showCancelButton: false
+   //                  })
+   //                  .then((value) => {
+   //                    if (value) {
+   //                      window.location.href = "socios.php";
+   //                    }
+   //                  });</script> ';
 
-			}
+			// }
 
-        }
-    }
+   //      }
+   //  }
 
 
     // 	#LISTADO DE TODOS LOS SOCIOS
@@ -212,162 +288,162 @@ class Controller{
 
 	#REGISTRO DE COACHES
 // 	#------------------------------------
-	public function registroCoach(){
+	// public function registroCoach(){
 
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	// 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-			$datosController = array( "nombre"=>$_POST["nombre"],
-									  "nick"=>$_POST["nick"],
-								      "aPaterno"=>$_POST["aPaterno"],
-								      "aMaterno"=>$_POST["aMaterno"],
-								      "email"=>$_POST["email"],
-								      "telefono"=>$_POST["telefono"],
-								      "activo"=>$_POST["activo"],
-								  	  "fechaIngreso" => $_POST["fechaIngreso"]);
+	// 		$datosController = array( "nombre"=>$_POST["nombre"],
+	// 								  "nick"=>$_POST["nick"],
+	// 							      "aPaterno"=>$_POST["aPaterno"],
+	// 							      "aMaterno"=>$_POST["aMaterno"],
+	// 							      "email"=>$_POST["email"],
+	// 							      "telefono"=>$_POST["telefono"],
+	// 							      "activo"=>$_POST["activo"],
+	// 							  	  "fechaIngreso" => $_POST["fechaIngreso"]);
 
-			//"fechaIngreso" => date("Y-m-d"));
+	// 		//"fechaIngreso" => date("Y-m-d"));
 
-			$respuesta = Datos::registroCoach($datosController, "coachs");
+	// 		$respuesta = Datos::registroCoach($datosController, "coachs");
 
-			if($respuesta == "success"){
-				echo '<script type="text/javascript">Swal.fire({
-                      title: "Datos Guardados!",
-                      type: "success",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "coaches.php";
-                      }
-                    });</script> ';
+	// 		if($respuesta == "success"){
+	// 			echo '<script type="text/javascript">Swal.fire({
+ //                      title: "Datos Guardados!",
+ //                      type: "success",
+ //                      showCancelButton: false
+ //                    })
+ //                    .then((value) => {
+ //                      if (value) {
+ //                        window.location.href = "coaches.php";
+ //                      }
+ //                    });</script> ';
 
-			}
-			else{
-				echo '<script type="text/javascript">Swal.fire({
-                      title: "Error al guardar!",
-                      type: "error",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "coaches.php";
-                      }
-                    });</script> ';
+	// 		}
+	// 		else{
+	// 			echo '<script type="text/javascript">Swal.fire({
+ //                      title: "Error al guardar!",
+ //                      type: "error",
+ //                      showCancelButton: false
+ //                    })
+ //                    .then((value) => {
+ //                      if (value) {
+ //                        window.location.href = "coaches.php";
+ //                      }
+ //                    });</script> ';
 
-			}
-		}
-	}
+	// 		}
+	// 	}
+	// }
 
 
 	# ACTUALIZA COACH
     #------------------------------------
 
-    public function actualizaCoach(){
+   //  public function actualizaCoach(){
 
-        if(isset($_POST["actualizar"])){
+   //      if(isset($_POST["actualizar"])){
 
-            $datosController = array("id"=>$_POST["id"],
-                                  "nombre"=>$_POST["nombre"],
-                                  "aPaterno"=>$_POST["aPaterno"],
-                                  "aMaterno"=>$_POST["aMaterno"],
-                                  "telefono"=>$_POST["telefono"],
-                                  "email"=>$_POST["email"],
-                                  "activo"=>$_POST["activo"],
-                                  "fechaIngreso"=>$_POST["fechaIngreso"],
-                                  "nickName"=>$_POST["nickName"]);
+   //          $datosController = array("id"=>$_POST["id"],
+   //                                "nombre"=>$_POST["nombre"],
+   //                                "aPaterno"=>$_POST["aPaterno"],
+   //                                "aMaterno"=>$_POST["aMaterno"],
+   //                                "telefono"=>$_POST["telefono"],
+   //                                "email"=>$_POST["email"],
+   //                                "activo"=>$_POST["activo"],
+   //                                "fechaIngreso"=>$_POST["fechaIngreso"],
+   //                                "nickName"=>$_POST["nickName"]);
 
-            $respuesta = Datos::actualizaCoach($datosController, "coachs");
+   //          $respuesta = Datos::actualizaCoach($datosController, "coachs");
 
-            if ($respuesta=="ok"){
-				echo '<script type="text/javascript">Swal.fire({
-	                      title: "Datos Guardados!",
-	                      type: "success",
-	                      showCancelButton: false
-	                    })
-	                    .then((value) => {
-	                      if (value) {
-	                        window.location.href = "coaches.php";
-	                      }
-	                    });</script> ';
-			}
-			else{
-					echo '<script type="text/javascript">Swal.fire({
-	                      title: "Error al guardar!",
-	                      type: "error",
-	                      showCancelButton: false
-	                    })
-	                    .then((value) => {
-	                      if (value) {
-	                        window.location.href = "coaches.php";
-	                      }
-	                    });</script> ';
-			}
+   //          if ($respuesta=="ok"){
+			// 	echo '<script type="text/javascript">Swal.fire({
+	  //                     title: "Datos Guardados!",
+	  //                     type: "success",
+	  //                     showCancelButton: false
+	  //                   })
+	  //                   .then((value) => {
+	  //                     if (value) {
+	  //                       window.location.href = "coaches.php";
+	  //                     }
+	  //                   });</script> ';
+			// }
+			// else{
+			// 		echo '<script type="text/javascript">Swal.fire({
+	  //                     title: "Error al guardar!",
+	  //                     type: "error",
+	  //                     showCancelButton: false
+	  //                   })
+	  //                   .then((value) => {
+	  //                     if (value) {
+	  //                       window.location.href = "coaches.php";
+	  //                     }
+	  //                   });</script> ';
+			// }
 
-        }
-    }
+   //      }
+   //  }
 
 
     #BORRA COACHES
     #------------------------------------
-    public function borraCoach(){
-        if (isset($_GET['idBorrar'])){
-            $datosController = $_GET['idBorrar'];
+   //  public function borraCoach(){
+   //      if (isset($_GET['idBorrar'])){
+   //          $datosController = $_GET['idBorrar'];
 
-            $respuesta = Datos::borrarRegistro($datosController,"coachs");
-            if ($respuesta == "success"){
-            echo '<script type="text/javascript">Swal.fire({
-                      title: "Registro Borrado!",
-                      type: "success",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "coaches.php";
-                      }
-                    });</script> ';
+   //          $respuesta = Datos::borrarRegistro($datosController,"coachs");
+   //          if ($respuesta == "success"){
+   //          echo '<script type="text/javascript">Swal.fire({
+   //                    title: "Registro Borrado!",
+   //                    type: "success",
+   //                    showCancelButton: false
+   //                  })
+   //                  .then((value) => {
+   //                    if (value) {
+   //                      window.location.href = "coaches.php";
+   //                    }
+   //                  });</script> ';
 
-			}
-			else{
-				echo '<script type="text/javascript">Swal.fire({
-                      title: "Error al borrar!",
-                      type: "error",
-                      showCancelButton: false
-                    })
-                    .then((value) => {
-                      if (value) {
-                        window.location.href = "coaches.php";
-                      }
-                    });</script> ';
+			// }
+			// else{
+			// 	echo '<script type="text/javascript">Swal.fire({
+   //                    title: "Error al borrar!",
+   //                    type: "error",
+   //                    showCancelButton: false
+   //                  })
+   //                  .then((value) => {
+   //                    if (value) {
+   //                      window.location.href = "coaches.php";
+   //                    }
+   //                  });</script> ';
 
-			}
+			// }
 
-        }
-    }
+   //      }
+   //  }
 
 
     #LISTADO DE TODOS LOS COACHES
     #------------------------------------
-    public function listaCoaches(){
+    // public function listaCoaches(){
 
-        $respuesta = Datos::lista("coachs");
-        $cont =0;
+    //     $respuesta = Datos::lista("coachs");
+    //     $cont =0;
 
-        foreach ($respuesta as $row => $item){
-        	$cont ++;
-        	echo '<tr>
-        		  <td>'.$item["nickName"].'</td>
-                  <td>'.$item["Nombre"].' '.$item["aPaterno"].'</td>
-                  <td>'.$item["telefono"].'</td>
-                  <td>'.$item["email"].'</td>
-                  <td>'.$item["fechaIngreso"].'</td>
-                  <td><a href="editCoach.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
-                      <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
-                      <a href="coaches.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
-                  </td>
-                </tr>';
-        }
+    //     foreach ($respuesta as $row => $item){
+    //     	$cont ++;
+    //     	echo '<tr>
+    //     		  <td>'.$item["nickName"].'</td>
+    //               <td>'.$item["Nombre"].' '.$item["aPaterno"].'</td>
+    //               <td>'.$item["telefono"].'</td>
+    //               <td>'.$item["email"].'</td>
+    //               <td>'.$item["fechaIngreso"].'</td>
+    //               <td><a href="editCoach.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+    //                   <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
+    //                   <a href="coaches.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
+    //               </td>
+    //             </tr>';
+    //     }
 
-    }
+    // }
 
 
 	#REGISTRO DE PAQUETES

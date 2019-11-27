@@ -72,11 +72,18 @@
                                         <div class="callout callout-danger">
 
                                           <h5><p id="nombre"></p></h5>
+                                          <input type="hidden" class="form-control" name="nombreAlumno" id="nombreAlumno">
 
                                           <h5><p id="grupo"></p></h5>
+                                          <input type="hidden" class="form-control" name="grupoAlumno" id="grupoAlumno">
                                           <h5><p id="inscrito"></p></h5>
 
                                           <h5><p id="disponible"></p></h5>
+
+
+                                          <br><br>
+
+
 
 
                                         </div>
@@ -95,7 +102,7 @@
                                             <div class="col-md-12">
                                                 <label>Extraordinario 1</label>
                                                 <select class="form-control" name="extra1">
-                                                    <option>Seleccione</option>
+                                                    <option value="">Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
                                                     $extras -> buscaMateria();
@@ -107,7 +114,7 @@
                                             <div class="col-md-12">
                                                 <label>Extraordinario 2</label>
                                                 <select class="form-control" name="extra2">
-                                                    <option>Seleccione</option>
+                                                    <option value="">Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
                                                     $extras -> buscaMateria();
@@ -119,7 +126,7 @@
                                             <div class="col-md-12">
                                                 <label>Extraordinario 3</label>
                                                 <select class="form-control" name="extra3">
-                                                    <option>Seleccione</option>
+                                                    <option value="">Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
                                                     $extras -> buscaMateria();
@@ -129,6 +136,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <input type="submit" disabled="true" class="btn btn-primary" id="btnGuardar" name="guardar" value="Guardar">
                             </div>
                         </div>
                         <div class="row">
@@ -136,18 +144,27 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="row">
-                                    <!-- <div class="col-md-6">
-                                        <button class="btn btn-success">Imprimir</button>
-                                    </div> -->
+
                                     <div class="col-md-6">
-                                        <input type="submit" disabled="true" class="btn btn-primary" id="btnGuardar" name="guardar" value="Guardar">
+
+
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-5">
                             </div>
                         </div>
+
+                        <?php
+                          $registro = new Controller();
+                          $registro -> registroExtra();
+
+                        ?>
                     </form>
+                    <div class="col-md-6">
+                        <a href="" id="imprimir"> <button class="btn btn-info" disabled="true" id="btnImprimir" >Imprimir</button></a>
+                    </div>
+
             </div>
 
         </div>
@@ -157,6 +174,12 @@
     include "includes/menus/footer.php";
   ?>
 </div>
+
+<script language=javascript>
+    function imprime(url){
+    window.open(url, "Diseño Web", "width=800, height=600")
+    }
+</script>
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>

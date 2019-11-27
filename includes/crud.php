@@ -57,6 +57,41 @@ class Datos extends Conexion{
 
 	}
 
+
+	#REGISTRO DE EXTRAORDINARIO
+	#-------------------------------------
+	public function registroExtra($datosModel){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO extras (noControl, nombre, grupo, materia) VALUES (:noControl, :nombre, :grupo, :materia)");
+
+
+		$stmt->bindParam(":noControl", $datosModel["noControl"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datosModel["nombreAlumno"], PDO::PARAM_STR);
+		$stmt->bindParam(":grupo", $datosModel["grupoAlumno"], PDO::PARAM_STR);
+		$stmt->bindParam(":materia", $datosModel["extra"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			return "success";
+		}
+		else{
+			return "error";
+		}
+		$stmt->close();
+	}
+
+
+	// #IMPRESION DE MATERIAS A LAS QUE SE INSCRIBIO UN ALUMNO
+  // #-------------------------------------
+  public function imprimirExtras($noControl){
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM `extras` WHERE `noControl`= :noControl");
+    $stmt -> bindParam(":noControl", $noControl, PDO::PARAM_STR);
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $stmt->close();
+  }
+
+
 	// #LISTA TODOS LOS REGISTROS DE UNA TABLA
 	// #-------------------------------------
 	public function listaOferta($tabla){
@@ -83,28 +118,28 @@ class Datos extends Conexion{
 	}
 
 
-    #REGISTRO DE SOCIO
-	#-------------------------------------
-	public function registroSocio($datosModel, $tabla){
+ //    #REGISTRO DE SOCIO
+	// #-------------------------------------
+	// public function registroSocio($datosModel, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, aPaterno, aMaterno, telefono, email, fechaIngreso, activo) VALUES (:nombre, :aPaterno, :aMaterno, :telefono, :email,:fechaIngreso, :activo)");
+	// 	$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (nombre, aPaterno, aMaterno, telefono, email, fechaIngreso, activo) VALUES (:nombre, :aPaterno, :aMaterno, :telefono, :email,:fechaIngreso, :activo)");
 
-		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(":aPaterno", $datosModel["aPaterno"], PDO::PARAM_STR);
-		$stmt->bindParam(":aMaterno", $datosModel["aMaterno"], PDO::PARAM_STR);
-		$stmt->bindParam(":telefono", $datosModel["telefono"], PDO::PARAM_STR);
-		$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
-		$stmt->bindParam(":fechaIngreso", $datosModel["fechaIngreso"], PDO::PARAM_STR);
-		$stmt->bindParam(":activo", $datosModel["activo"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":aPaterno", $datosModel["aPaterno"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":aMaterno", $datosModel["aMaterno"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":telefono", $datosModel["telefono"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":email", $datosModel["email"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":fechaIngreso", $datosModel["fechaIngreso"], PDO::PARAM_STR);
+	// 	$stmt->bindParam(":activo", $datosModel["activo"], PDO::PARAM_STR);
 
-		if($stmt->execute()){
-			return "success";
-		}
-		else{
-			return "error";
-		}
-		$stmt->close();
-	}
+	// 	if($stmt->execute()){
+	// 		return "success";
+	// 	}
+	// 	else{
+	// 		return "error";
+	// 	}
+	// 	$stmt->close();
+	// }
 
 	#ACTUALIZA SOCIO
 	#-------------------------------------
