@@ -44,7 +44,7 @@
               <div class="container-fluid">
                 <div class="row mb-2">
                   <div class="col-sm-6">
-                    <h4 class="m-0 text-dark">Registro para extraordinarios</h4>
+                    <h4 class="m-0 text-dark">Registro a extraordinarios</h4>
                   </div><!-- /.col -->
                 </div><!-- /.row -->
               </div><!-- /.container-fluid -->
@@ -76,6 +76,9 @@
                                           <h5><p id="grupo"></p></h5>
                                           <h5><p id="inscrito"></p></h5>
 
+                                          <h5><p id="disponible"></p></h5>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +91,7 @@
                                         <h3 class="card-title">Inscripciones</h3>
                                     </div>
                                     <div class="card-body">
-                                        <div class="row">
+                                        <div class="row" id="extra1">
                                             <div class="col-md-12">
                                                 <label>Extraordinario 1</label>
                                                 <select class="form-control" name="extra1">
@@ -100,7 +103,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" id="extra2">
                                             <div class="col-md-12">
                                                 <label>Extraordinario 2</label>
                                                 <select class="form-control" name="extra2">
@@ -112,7 +115,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" id="extra3">
                                             <div class="col-md-12">
                                                 <label>Extraordinario 3</label>
                                                 <select class="form-control" name="extra3">
