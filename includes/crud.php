@@ -94,8 +94,8 @@ class Datos extends Conexion{
 
 	// #LISTA TODOS LOS REGISTROS DE UNA TABLA
 	// #-------------------------------------
-	public function listaOferta($tabla){
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY docente");
+	public function listaExtras($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla GROUP BY materia");
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
