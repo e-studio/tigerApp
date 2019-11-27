@@ -19,6 +19,9 @@ function findNoControl(Control) {
                     });
                   //document.getElementById("noControl").focus();
                   document.getElementById("noControl").value = '';
+                  document.getElementById("nombre").innerHTML = '';
+                  document.getElementById("grupo").innerHTML = '';
+                  document.getElementById("inscrito").innerHTML = '';
               }
               else{
                   document.getElementById("nombre").innerHTML = Respuesta[3]+' '+ Respuesta[1]+ ' ' +Respuesta[2];
