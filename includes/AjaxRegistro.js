@@ -2,6 +2,8 @@ function findNoControl(Control) {
   document.getElementById('extra1').style.display = 'none';
   document.getElementById('extra2').style.display = 'none';
   document.getElementById('extra3').style.display = 'none';
+  document.getElementById("btnGuardar").disabled = true;
+
       //console.log(Control);
         if (window.XMLHttpRequest) {
             var xmlhttp = new XMLHttpRequest();
@@ -25,12 +27,14 @@ function findNoControl(Control) {
                   document.getElementById("nombre").innerHTML = '';
                   document.getElementById("grupo").innerHTML = '';
                   document.getElementById("inscrito").innerHTML = '';
+                  document.getElementById("btnGuardar").disabled = true;
               }
               else{
                   document.getElementById("nombre").innerHTML = Respuesta[3]+' '+ Respuesta[1]+ ' ' +Respuesta[2];
                   document.getElementById("grupo").innerHTML = Respuesta[4]+Respuesta[5];
                   document.getElementById("inscrito").innerHTML = 'Materias inscritas : '+Respuesta[6];
                   var recs = 3 - Respuesta[6];
+                  if (recs>0) document.getElementById("btnGuardar").disabled = false;
 
                   for(var i = 1; i <= recs; i++){
                     console.log('extra'+i);

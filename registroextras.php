@@ -140,7 +140,7 @@
                                         <button class="btn btn-success">Imprimir</button>
                                     </div> -->
                                     <div class="col-md-6">
-                                        <input type="submit" disabled="true" class="btn btn-primary" name="guardar" value="Guardar">
+                                        <input type="submit" disabled="true" class="btn btn-primary" id="btnGuardar" name="guardar" value="Guardar">
                                     </div>
                                 </div>
                             </div>
