@@ -137,18 +137,13 @@
                                         <button class="btn btn-success">Imprimir</button>
                                     </div> -->
                                     <div class="col-md-6">
-                                        <input type="submit"  class="btn btn-primary" name="guardar" value="Guardar">
+                                        <input type="submit" disabled="true" class="btn btn-primary" name="guardar" value="Guardar">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-5">
                             </div>
                         </div>
-
-                        <?php
-                            $Registrar = new Controller();
-                            $Registrar -> ctlRegistrarExtras();
-                        ?>
                     </form>
             </div>
 
@@ -168,6 +163,7 @@
 <script src="dist/js/adminlte.min.js"></script>
 
 <script src="includes/validar.js"></script>
+<script src="includes/Cosas.js"></script>
 <script src="includes/AjaxRegistro.js"></script>
 </body>
 </html>

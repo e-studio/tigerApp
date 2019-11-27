@@ -356,49 +356,4 @@ class Datos extends Conexion{
 
 	}
 
-	public function mdlRegistrarExtras ($Tabla, $Datos) {
-
-		$ContadorExtras = Datos::mdlCuentaExtras($Datos["noControl"]);
-		$Cuantos = $ContadorExtras[0];
-		
-		$ContadorMaterias = 0;
-
-			foreach ($Datos as $Row => $Item) {
-				if ($Item != $Datos["noControl"] && $Item != "Seleccione")
-					$ContadorMaterias++;
-			}
-		
-		if (($Cuantos + $ContadorMaterias) > 3)
-			return "error";
-		else {
-
-			if (!($Datos["extra1"] == "Seleccione")) {
-				$Statement = Conexion::conectar() -> prepare("INSERT INTO $Tabla VALUES (null, :noControl, 'Hola', :materia)" );
-				$Statement -> bindParam(":noControl", $Datos["noControl"], PDO::PARAM_STR);
-				$Statement -> bindParam(":materia", $Datos["extra1"], PDO::PARAM_STR);
-				$Statement -> execute();
-
-			}
-
-			if (!($Datos["extra2"] == "Seleccione")) {
-				$Statement = Conexion::conectar() -> prepare("INSERT INTO $Tabla VALUES (null, :noControl, 'Hola', :materia)" );
-				$Statement -> bindParam(":noControl", $Datos["noControl"], PDO::PARAM_STR);
-				$Statement -> bindParam(":materia", $Datos["extra2"], PDO::PARAM_STR);
-				$Statement -> execute();
-
-			}
-
-			if (!($Datos["extra3"] == "Seleccione")) {
-				$Statement = Conexion::conectar() -> prepare("INSERT INTO $Tabla VALUES (null, :noControl, 'Hola', :materia)" );
-				$Statement -> bindParam(":noControl", $Datos["noControl"], PDO::PARAM_STR);
-				$Statement -> bindParam(":materia", $Datos["extra3"], PDO::PARAM_STR);
-				$Statement -> execute();
-
-			}
-		}
-		return "success";
-
-
-	}
-
 } // conexion

@@ -679,49 +679,6 @@ class Controller{
 
     }
 
-    #REGISTRA A UNA PERSONA A LOS EXTRAORDINARIOS
-
-    public function ctlRegistrarExtras () {
-
-      if (isset($_POST["noControl"])) {
-
-      $Datos = array("noControl" => $_POST["noControl"],
-                     "extra1" => $_POST["extra1"],
-                     "extra2" => $_POST["extra2"],
-                     "extra3" => $_POST["extra3"]);
-
-      $Respuesta = Datos::mdlRegistrarExtras("extras", $Datos);
-
-            if ($Respuesta == "success") {
-              echo '<script type="text/javascript">Swal.fire({
-                                title: "¡Registro exitoso!",
-                                type: "success",
-                                showCancelButton: false
-                              })
-                              .then((value) => {
-                                if (value) {
-                                  window.location.href = "registroextras.php";
-                                }
-                              });</script> ';
-
-          } else {
-              echo '<script type="text/javascript">Swal.fire({
-                                title: "¡Registro fallado!",
-                                type: "error",
-                                showCancelButton: false
-                              })
-                              .then((value) => {
-                                if (value) {
-                                  window.location.href = "registroextras.php";
-                                }
-                              });</script> ';
-          }
-
-      }
-
-
-    }
-
 }//Clase principal
 
 ?>
