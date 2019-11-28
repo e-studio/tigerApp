@@ -5,6 +5,10 @@ if(!$_SESSION["valido"]){
 }
 require_once "includes/controller.php";
 require_once "includes/crud.php";
+$registro = new Controller();
+$busca = new Controller();
+
+$noControl = $_REQUEST['noControl'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -44,22 +48,21 @@ require_once "includes/crud.php";
 
             <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Impresion de listas</h3>
+              <h3 class="card-title"><?php $busca -> buscaAlumno($noControl); ?></h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Grupo</th>
                   <th>Materia</th>
-                  <th style="width: 50px"></th>
+                  <th style="width: 120px"></th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php
-                    $registro = new Controller();
-                    $registro -> listaExtras();
+                    $registro -> inscritoExtras($noControl);
+                    $registro -> borraExtra();
                   ?>
 
                 </tbody>

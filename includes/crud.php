@@ -13,6 +13,19 @@ class Datos extends Conexion{
 
 	}
 
+
+	public function buscaAlumno($noControl){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM alumnos where noControl = :noControl");
+
+			$stmt->bindParam(":noControl", $noControl, PDO::PARAM_STR);
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+
+	}
+
+
 	public function mdlIdOferta ($Materia) {
 		$Statement = Conexion::conectar() -> prepare("SELECT id FROM ofertas WHERE materia = :materia");
 		$Statement -> bindParam(":materia", $Materia, PDO::PARAM_STR);
@@ -103,8 +116,8 @@ class Datos extends Conexion{
 	}
 
 
-	// #IMPRESION DE MATERIAS A LAS QUE SE INSCRIBIO UN ALUMNO
-  // #-------------------------------------
+	// #IMPRESION DE MATERIAS A LAS QUE SE INSCRIBIO UN ALUMNO PARA RECIBO DE INSCRIPCION
+  // #-----------------------------------------------------------------------------------
   public function imprimirExtras($noControl){
     $stmt = Conexion::conectar()->prepare("SELECT * FROM `extras` WHERE `noControl`= :noControl");
     $stmt -> bindParam(":noControl", $noControl, PDO::PARAM_STR);
@@ -115,10 +128,35 @@ class Datos extends Conexion{
   }
 
 
+  // #IMPRESION LISTA DE ALUMNOS INSCRITOS A UN RECURSO
+  // #-----------------------------------------------------------------------------------
+  public function imprimirListaExtras($materia, $grupo){
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM `extras` WHERE `materia`= :materia AND `grupo`= :grupo ORDER BY nombre");
+    $stmt -> bindParam(":materia", $materia, PDO::PARAM_STR);
+    $stmt -> bindParam(":grupo", $grupo, PDO::PARAM_STR);
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $stmt->close();
+  }
+
+
+
 	// #LISTA TODOS LOS REGISTROS DE UNA TABLA
 	// #-------------------------------------
 	public function listaExtras($tabla){
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla GROUP BY materia");
+		$stmt = Conexion::conectar()->prepare("SELECT DISTINCT `grupo`, `materia` FROM $tabla;");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
+
+	// #LISTA TODOS LOS REGISTROS DE UNA TABLA
+	// #-------------------------------------
+	public function inscritoExtras($noControl){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM extras WHERE noControl = :noControl");
+		$stmt -> bindParam(":noControl", $noControl, PDO::PARAM_STR);
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
@@ -365,6 +403,23 @@ class Datos extends Conexion{
 		}
 		$stmt -> close();
 	}
+
+
+
+	#BORRAR EXTRAORDINARIO
+	#-------------------------------------
+	public function borraExtra($datosModel){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM extras WHERE id = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
+		$stmt -> close();
+	}
+
+
 
 	#
 	public function mdlBuscaControlAjax ($Tabla, $Control) {

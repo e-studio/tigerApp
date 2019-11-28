@@ -14,6 +14,20 @@ class Controller{
 	}
 
 
+  public function buscaAlumno($noControl){
+
+    $respuesta = Datos::buscaAlumno($noControl);
+    if($respuesta){
+      echo $respuesta['noControl'].'<br>';
+      echo $respuesta["nombres"].' '.$respuesta["apellidoPat"].' '.$respuesta["apellidoMat"].'<br>';
+      echo $respuesta['grado'].$respuesta['grupo'];
+    }
+    else{
+      echo "no se encontro";
+    }
+  }
+
+
 
 	public function buscaProfesor(){
 
@@ -147,7 +161,7 @@ class Controller{
 
     }
 
-// #IMPRESION DE MATERIAS A LAS QUE SE INSCRIBIO UN ALUMNO
+//     #IMPRESION RECIBO DE INSCRIPCION DE UN ALUMNO
 //     #------------------------------------
     public function imprimirExtras($noControl){
 
@@ -158,6 +172,27 @@ class Controller{
         echo '<tr>
                   <td style="text-align: center">'.$cont.'</td>
                   <td style="text-align: left">'.$item["materia"].'</td>
+            </tr>';
+            $cont++;
+        }
+        //echo '<tr style="text-align: right">
+        //        <td colspan="4">'. ($cont-1) .' citas en total para esta sesion </td>
+        //      </tr>';
+
+    }
+
+    //     #IMPRESION RECIBO DE INSCRIPCION DE UN ALUMNO
+//     #------------------------------------
+    public function imprimirListaExtras($materia, $grupo){
+
+        $respuesta = Datos::imprimirListaExtras($materia, $grupo);
+        $cont =1;
+
+        foreach ($respuesta as $row => $item){
+        echo '<tr>
+                  <td style="text-align: center">'.$cont.'</td>
+                  <td style="text-align: left">'.$item["noControl"].'</td>
+                  <td style="text-align: left">'.$item["nombre"].'</td>
             </tr>';
             $cont++;
         }
@@ -614,6 +649,46 @@ class Controller{
         }
     }
 
+
+    #BORRA EXTRAORDINARIO
+    #------------------------------------
+    public function borraExtra(){
+        if (isset($_GET['idBorrar'])){
+            $datosController = $_GET['idBorrar'];
+
+            $respuesta = Datos::borraExtra($datosController);
+
+            if ($respuesta == "success"){
+            echo '<script type="text/javascript">Swal.fire({
+                      title: "Registro Borrado!",
+                      type: "success",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "editaExtras.php";
+                      }
+                    });</script> ';
+
+      }
+      else{
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "Error al borrar!",
+                      type: "error",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "editaExtras.php";
+                      }
+                    });</script> ';
+
+      }
+
+        }
+    }
+
+
     #BORRA PAQUETE
     #------------------------------------
     public function borraoferta(){
@@ -676,8 +751,8 @@ class Controller{
     }
 
 
-    #LISTADO DE TODOS LOS EXTRAORDINARIOS
-    #------------------------------------
+    ##LISTA PARA DOCENTE DE LOS ALUMNOS INSCRITOS A UN EXTRAORDINARIO
+    #----------------------------------------------------------------
     public function listaExtras(){
 
         $respuesta = Datos::listaExtras("extras");
@@ -689,14 +764,40 @@ class Controller{
         echo '<tr>
                   <td>'.$item["grupo"].'</td>
                   <td>'.$item["materia"].'</td>
-                  <td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
-                      <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
-                      <a href="listaoferta.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
-                  </td>
-                </tr>';
+                  <td>';
+
+              echo '<a href="javascript:imprime(';
+              echo "'imprimeExtras.php?materia=".$item["materia"]."&grupo=".$item["grupo"]."')";
+              echo '"><button class="btn btn-info"><i class="fas fa-print"></i></button></a>';
+        echo'     </td>';
+        echo'   </tr>';
         }
 
     }
+
+
+        ##LISTA PARA DOCENTE DE LOS ALUMNOS INSCRITOS A UN EXTRAORDINARIO
+    #----------------------------------------------------------------
+    public function inscritoExtras($noControl){
+
+        $respuesta = Datos::inscritoExtras($noControl);
+        $cont =0;
+
+        foreach ($respuesta as $row => $item){
+          $cont ++;
+
+        echo '<tr>
+                  <td>'.$item["materia"].'</td>';
+
+              echo '<td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                      <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
+                      <a href="editaExtrasAlumno.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
+                  </td>';
+        echo'   </tr>';
+        }
+
+    }
+
 
     #COMPRA DE PAQUETES
 // 	#------------------------------------

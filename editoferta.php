@@ -82,16 +82,6 @@ $idBuscar = $_REQUEST['idEditar'];
 	                        	?>
                      		</select>
                          </div>
-
-<!--                          <div class="col-4">
-                         <label for="exampleInputPassword1">Tipo</label>
-                        	<select class="form-control" required name="tipo">
-                            <option value="">tipo</option>
-                            <option selected><?php // echo $respuesta['tipo'];?></option>
-                            <option value="Extraordinario">Extraordinario</option>
-                            <option value="Recurso">Recurso</option>
-	                        </select>
-                      </div> -->
                     </div>
                   </div>
 
