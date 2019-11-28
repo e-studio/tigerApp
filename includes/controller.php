@@ -23,6 +23,20 @@ class Controller{
       echo $respuesta['grado'].$respuesta['grupo'];
     }
     else{
+      echo "No hay inscripciones de este alumno";
+    }
+  }
+
+
+   public function buscaUnExtra($id){
+
+    $respuesta = Datos::buscaAlumno($id);
+    if($respuesta){
+      echo $respuesta['noControl'].'<br>';
+      echo $respuesta["nombres"].' '.$respuesta["apellidoPat"].' '.$respuesta["apellidoMat"].'<br>';
+      echo $respuesta['grado'].$respuesta['grupo'];
+    }
+    else{
       echo "no se encontro";
     }
   }
@@ -200,6 +214,48 @@ class Controller{
         //        <td colspan="4">'. ($cont-1) .' citas en total para esta sesion </td>
         //      </tr>';
 
+    }
+
+
+
+    # ACTUALIZA UN EXTRAORDINARIO
+    #------------------------------------
+
+    public function actualizaExtra(){
+
+        if(isset($_POST["actualizar"])){
+
+            $datosController = array("id"=>$_POST["id"],
+                                     "extra"=>$_POST["extra"]);
+
+            $respuesta = Datos::actualizaExtra($datosController);
+
+            if ($respuesta=="ok"){
+              echo '<script type="text/javascript">Swal.fire({
+                      title: "Datos Guardados!",
+                      type: "success",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "editaExtras.php";
+                      }
+                    });</script> ';
+      }
+      else{
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "Error al guardar!",
+                      type: "error",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "editaExtras.php";
+                      }
+                    });</script> ';
+      }
+
+        }
     }
 
 // 	#REGISTRO DE SOCIOS
@@ -789,7 +845,7 @@ class Controller{
         echo '<tr>
                   <td>'.$item["materia"].'</td>';
 
-              echo '<td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+              echo '<td><a href="editaUnExtra.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                       <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
                       <a href="editaExtrasAlumno.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
                   </td>';

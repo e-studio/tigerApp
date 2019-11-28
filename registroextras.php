@@ -80,7 +80,7 @@
                                           <input type="hidden" class="form-control" name="grupoAlumno" id="grupoAlumno">
                                           <h5><p id="inscrito"></p></h5>
 
-                                          
+
 
 
 
@@ -88,8 +88,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                             <div class="col-md-6">
                                  <div class="card card-primary">

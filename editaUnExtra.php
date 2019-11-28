@@ -8,7 +8,9 @@ require_once "includes/crud.php";
 $registro = new Controller();
 $busca = new Controller();
 
-$noControl = $_REQUEST['noControl'];
+$idEditar = $_REQUEST['idEditar'];
+$respuesta = Datos::buscaUnExtra($idEditar);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,7 +35,7 @@ $noControl = $_REQUEST['noControl'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Extraordinarios</h1>
+            <h1 class="m-0 text-dark">Corregir un Extraordinario</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -43,43 +45,57 @@ $noControl = $_REQUEST['noControl'];
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-10">
+        <form role="form" method="POST">
 
-            <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title"><?php $busca -> buscaAlumno($noControl); ?></h3>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Materia</th>
-                  <th style="width: 120px"></th>
-                </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    $registro -> inscritoExtras($noControl);
-                    $registro -> borraExtra();
-                  ?>
+                        <div class="row">
 
-                </tbody>
+                            <div class="col-md-6">
+                                 <div class="card card-primary">
+                                    <div class="card-header with-border">
+                                        <h3 class="card-title"><?php echo $respuesta['nombre'].'<br>'.$respuesta['grupo']; ?></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row" id="extra1">
+                                            <div class="col-md-12">
+                                                <label>Extraordinario</label>
+                                                <select class="form-control" name="extra">
+                                                    <option selected><?php echo $respuesta['materia']; ?></option>
+                                                    <?php
+                                                    $extras = new Controller();
+                                                    $extras -> buscaMateria();
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <a href="editaExtras.php" class="btn btn-secondary" >Cancelar</a>
+                                 <input type="submit" class="btn btn-warning" id="btnGuardar" name="actualizar" value="Actualizar">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                            </div>
+                            <div class="col-md-2">
+                                <div class="row">
 
-              </table>
-              <br>
-              <a href="editaExtras.php" class="btn btn-secondary" >Volver</a>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
+                                    <div class="col-md-6">
 
 
-          </div>
-        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                            </div>
+                        </div>
+                        <input type="hidden" id="id" name="id" value="<?php echo $idEditar; ?>">
 
-        <!-- /.row -->
+                        <?php
+                          $registro = new Controller();
+                          $registro -> actualizaExtra();
+
+                        ?>
+                    </form>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

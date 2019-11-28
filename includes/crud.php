@@ -25,6 +25,17 @@ class Datos extends Conexion{
 
 	}
 
+	public function buscaUnExtra($id){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM extras where id = :id");
+
+			$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+
+	}
+
 
 	public function mdlIdOferta ($Materia) {
 		$Statement = Conexion::conectar() -> prepare("SELECT id FROM ofertas WHERE materia = :materia");
@@ -369,16 +380,13 @@ class Datos extends Conexion{
 
 	#ACTUALIZA PAQUETE
 	#-------------------------------------
-	public function actualizaPaquete($datosModel, $tabla){
+	public function actualizaExtra($datosModel){
 
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, costo = :costo, clases = :clases, caducaDias = :vigencia WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE extras SET materia = :extra WHERE id = :id");
 
 		$stmt->bindParam(":id", $datosModel["id"], PDO::PARAM_INT);
-		$stmt->bindParam(":nombre", $datosModel["nombre"], PDO::PARAM_STR);
-		$stmt->bindParam(":costo", $datosModel["costo"], PDO::PARAM_STR);
-		$stmt->bindParam(":clases", $datosModel["clases"], PDO::PARAM_STR);
-		$stmt->bindParam(":vigencia", $datosModel["vigencia"], PDO::PARAM_STR);
+		$stmt->bindParam(":extra", $datosModel["extra"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 			return "ok";
