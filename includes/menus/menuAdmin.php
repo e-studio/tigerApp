@@ -27,7 +27,7 @@
           </ul>
         </li>
 
-        <li class="nav-item has-treeview">
+        <!-- <li class="nav-item has-treeview">
           <a href="#" class="nav-link"><i class="nav-icon fa fa-undo"></i>
             <p>Recursos<i class="right fas fa-angle-left"></i></p>
           </a>
@@ -37,7 +37,7 @@
             <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fas fa-folder-open"></i> Abrir </a></li>
             <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-server"></i> Gestionar</a></li>
           </ul>
-        </li>
+        </li> -->
 
 
 
