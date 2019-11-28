@@ -652,7 +652,7 @@ class Controller{
     }
 
 
-    #LISTADO DE TODOS LOS PAQUETES
+    #LISTADO DE TODOS LOS RECURSOS
     #------------------------------------
     public function listaoferta(){
 
@@ -666,6 +666,29 @@ class Controller{
                   <td>'.$item["docente"].'</td>
                   <td>'.$item["materia"].'</td>
                   <td>'.$item["tipo"].'</td>
+                  <td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                      <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
+                      <a href="listaoferta.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
+                  </td>
+                </tr>';
+        }
+
+    }
+
+
+    #LISTADO DE TODOS LOS EXTRAORDINARIOS
+    #------------------------------------
+    public function listaExtras(){
+
+        $respuesta = Datos::listaExtras("extras");
+        $cont =0;
+
+        foreach ($respuesta as $row => $item){
+          $cont ++;
+
+        echo '<tr>
+                  <td>'.$item["grupo"].'</td>
+                  <td>'.$item["materia"].'</td>
                   <td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                       <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
                       <a href="listaoferta.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>

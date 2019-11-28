@@ -22,7 +22,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item"><a href="registroextras.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Inscripcion</a></li>
-            <li class="nav-item"><a href="listaCancelar.php" class="nav-link"><i class="fa fa-list-ol nav-icon"></i> Listas</a></li>
+            <li class="nav-item"><a href="listaExtras.php" class="nav-link"><i class="fa fa-list-ol nav-icon"></i> Listas</a></li>
           </ul>
         </li>
 
