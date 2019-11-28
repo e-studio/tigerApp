@@ -1,9 +1,9 @@
 <?php
-	session_start();
-	if (!$_SESSION["valido"]) {
-		header("location:index.php");
+  header("Content-Type: text/html;charset=utf-8");
+    session_start();
+    if (!$_SESSION["valido"]) {
+        header("location:index.php");
         exit();
-
     }
     require_once "includes/controller.php";
     require_once "includes/crud.php";
@@ -11,9 +11,10 @@
 
 <!DOCTYPE html>
 <html>
+<html lang="es" xml:lang="es" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
-<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="shortcut icon" href="favicon.ico" />
@@ -26,6 +27,10 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- Sweet Alert 2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.16.3/dist/sweetalert2.all.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 
@@ -41,7 +46,7 @@
               <div class="container-fluid">
                 <div class="row mb-2">
                   <div class="col-sm-6">
-                    <h4 class="m-0 text-dark">Registro para recursos</h4>
+                    <h4 class="m-0 text-dark">Registro a recursos</h4>
                   </div><!-- /.col -->
                 </div><!-- /.row -->
               </div><!-- /.container-fluid -->
@@ -61,35 +66,27 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>No. de control</label>
-                                                <input type="text" class="form-control" placeholder="" id="noControl" name="noControl" onkeydown="buscarControl(this.value)">
+                                                <input type="text" class="form-control" placeholder="" id="noControl" name="noControl" onchange="findNoControl(this.value ,'recurso')">
                                             </div>
                                         </div>
+                                        <br>
 
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Nombre(s)</label>
-                                                <input type="text" readonly id="nombre" value="" class="form-control">
-                                            </div>
+                                        <div class="callout callout-danger">
 
-                                            <div class="col-md-4">
-                                                <label>Apellido paterno</label>
-                                                <input type="text" readonly id="apaterno" value="" class="form-control">
-                                            </div>
+                                          <h5><p id="nombre"></p></h5>
+                                          <input type="hidden" class="form-control" name="nombreAlumno" id="nombreAlumno">
 
-                                            <div class="col-md-4">
-                                                <label>Apellido materno</label>
-                                                <input type="text" readonly id="amaterno" value="" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Especialidad</label>
-                                                <input type="text" readonly id="especialidad" value="" class="form-control">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label>Grupo</label>
-                                                <input type="text" readonly id="grupo" value="" class="form-control">
-                                            </div>
+                                          <h5><p id="grupo"></p></h5>
+                                          <input type="hidden" class="form-control" name="grupoAlumno" id="grupoAlumno">
+                                          <h5><p id="inscrito"></p></h5>
+
+                                          <h5><p id="disponible"></p></h5>
+
+
+                                          <br><br>
+
+
+
 
                                         </div>
                                     </div>
@@ -103,35 +100,33 @@
                                         <h3 class="card-title">Inscripciones</h3>
                                     </div>
                                     <div class="card-body">
-                                        <div class="row">
+                                        <div class="row" id="recurso1">
                                             <div class="col-md-12">
                                                 <label>Recurso 1</label>
-                                                <select class="form-control">
-                                                    <option>Seleccione</option>
+                                                <select class="form-control" name="recurso1">
+                                                    <option value="">Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
-                                                    $extras -> buscarecurso();
+                                                    $extras -> buscaMateria();
                                                     ?>
-
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" id="recurso2">
                                             <div class="col-md-12">
                                                 <label>Recurso 2</label>
-                                                <select class="form-control">
-
-                                                    <option>Seleccione</option>
+                                                <select class="form-control" name="recurso2">
+                                                    <option value="">Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
-                                                    $extras -> buscarecurso();
+                                                    $extras -> buscaMateria();
                                                     ?>
-
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                 <input type="submit" disabled="true" class="btn btn-primary" id="btnGuardar" name="guardar" value="Guardar">
                             </div>
                         </div>
                         <div class="row">
@@ -139,11 +134,10 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="row">
+
                                     <div class="col-md-6">
-                                        <button class="btn btn-success">Imprimir</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
+
+
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +145,16 @@
                             </div>
                         </div>
 
+                        <?php
+                          $registro = new Controller();
+                          $registro -> ctlRegistroRecurso();
+
+                        ?>
                     </form>
+                    <div class="col-md-6">
+                        <a href="" id="imprimir"> <button class="btn btn-info" disabled="true" id="btnImprimir" >Imprimir</button></a>
+                    </div>
+
             </div>
 
         </div>
@@ -162,6 +165,12 @@
   ?>
 </div>
 
+<script language=javascript>
+    function imprime(url){
+    window.open(url, "Diseño Web", "width=800, height=600")
+    }
+</script>
+
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -170,6 +179,7 @@
 <script src="dist/js/adminlte.min.js"></script>
 
 <script src="includes/validar.js"></script>
-<script src="includes/Cosas.js"></script>
+<script src="includes/AjaxRegistro.js"></script>
+
 </body>
 </html>

@@ -94,13 +94,58 @@ class Controller{
                     })
                     .then((value) => {
                       if (value) {
-                        window.location.href = "socios.php";
+                        window.location.href = "registrarextras.php";
                       }
                     });</script> ';
 
       }
     }
   }
+    public function ctlRegistroRecurso () {
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                
+
+                if ($_POST["recurso1"] != "" ){
+                    
+                    $idOferta = Datos::mdlIdOferta($_POST["recurso1"]);
+
+                    $Datos = array("noControl" => $_POST["noControl"],
+                                    "idOferta" => $idOferta,
+                                    "fecha" => date("Y-m-d"));
+                    $respuesta1 = Datos::mdlRegistroRecurso($Datos);
+                }
+
+                if ($_POST["recurso2"] != "" ){
+                    
+                    $idOferta = Datos::mdlIdOferta($_POST["recurso2"]);
+
+                    $Datos = array("noControl" => $_POST["noControl"],
+                                    "idOferta" => $idOferta,
+                                    "fecha" => date("Y-m-d"));
+                    $respuesta2 = Datos::mdlRegistroRecurso($Datos);
+
+                }
+
+                if($respuesta1 == "success" || $respuesta2 == "success"){
+                    /*echo '<script type="text/javascript">window.open("imprimeCitas.php?noControl='.$noControl.'&nombre='.$nombreAlumno.'&grupo='.$grupoAlumno.'", "", "width=800, height=600") </script> ';*/
+                  }
+                else{
+                    echo '<script type="text/javascript">Swal.fire({
+                                  title: "Error al guardar!",
+                                  type: "error",
+                                  showCancelButton: false
+                                })
+                                .then((value) => {
+                                  if (value) {
+                                    window.location.href = "registrorecursos.php";
+                                  }
+                                });</script> ';
+
+                }
+            }
+
+    }
 
 // #IMPRESION DE MATERIAS A LAS QUE SE INSCRIBIO UN ALUMNO
 //     #------------------------------------
@@ -724,6 +769,29 @@ class Controller{
           echo "||";
           echo $insc;
 
+    }
+
+    public function ctlBuscaControlAjaxRecursos ($Tabla, $Control) {
+      $Cuenta = Datos::mdlCuentaRecursos($Control);
+      $Inscritos = $Cuenta[0];
+
+      
+
+        $Resultado = Datos::mdlBuscaControlAjax($Tabla, $Control);
+
+          echo $Resultado[0];
+            echo "||";
+          echo $Resultado[1];
+            echo "||";
+          echo $Resultado[2];
+            echo "||";
+          echo $Resultado[3];
+            echo "||";
+          echo $Resultado[4];
+            echo "||";
+          echo $Resultado[5];
+            echo "||";
+          echo $Inscritos;
     }
 
 

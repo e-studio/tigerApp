@@ -66,7 +66,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <label>No. de control</label>
-                                                <input type="text" class="form-control" placeholder="" id="noControl" name="noControl" onchange="findNoControl(this.value)">
+                                                <input type="text" class="form-control" placeholder="" id="noControl" name="noControl" onchange="findNoControl(this.value, 'extra')">
                                             </div>
                                         </div>
                                         <br>
@@ -80,10 +80,7 @@
                                           <input type="hidden" class="form-control" name="grupoAlumno" id="grupoAlumno">
                                           <h5><p id="inscrito"></p></h5>
 
-                                          <h5><p id="disponible"></p></h5>
-
-
-                                          <br><br>
+                                          
 
 
 
@@ -191,7 +188,6 @@
 <script src="dist/js/adminlte.min.js"></script>
 
 <script src="includes/validar.js"></script>
-<script src="includes/Cosas.js"></script>
 <script src="includes/AjaxRegistro.js"></script>
 </body>
 </html>

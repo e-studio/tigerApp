@@ -13,6 +13,15 @@ class Datos extends Conexion{
 
 	}
 
+	public function mdlIdOferta ($Materia) {
+		$Statement = Conexion::conectar() -> prepare("SELECT id FROM ofertas WHERE materia = :materia");
+		$Statement -> bindParam(":materia", $Materia, PDO::PARAM_STR);
+
+		$Statement -> execute();
+
+			return $Statement -> fetch();
+		$Statement -> close();
+	}
 
 	public function mdlBuscaDocentes($tabla){
 
@@ -77,6 +86,20 @@ class Datos extends Conexion{
 			return "error";
 		}
 		$stmt->close();
+	}
+
+	public function mdlRegistroRecurso ($Datos) {
+		$Statement = Conexion::conectar() -> prepare("INSERT INTO registro VALUES (null, :idOferta, :noControl, :fecha, null)");
+
+		$Statement -> bindParam(":idOferta", $Datos["idOferta"], PDO::PARAM_STR);
+		$Statement -> bindParam(":noControl", $Datos["noControl"], PDO::PARAM_STR);
+		$Statement -> bindParam(":fecha", $Datos["fecha"], PDO::PARAM_STR);
+
+			if ($Statement -> execute()) {
+				return "success";
+			} else {
+				return "error";
+			}
 	}
 
 
@@ -293,6 +316,16 @@ class Datos extends Conexion{
 
 		return $stmt->fetch();
 		$stmt->close();
+	}
+
+	public function mdlCuentaRecursos ($Control) {
+		$Statement = Conexion::conectar() -> prepare("SELECT COUNT(id) FROM `registro` WHERE noControl = :noControl;");
+
+		$Statement -> bindParam(":noControl", $Control, PDO::PARAM_STR);
+		$Statement -> execute();
+
+		return $Statement -> fetch();
+		$Statement -> close();
 	}
 
 
