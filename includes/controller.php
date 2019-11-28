@@ -36,7 +36,7 @@ class Controller{
 		}
   }
 
-  public function buscarecurso(){
+  public function buscaRecurso(){
 
 		$respuesta = Datos::mdlRecurso("oferta");
 
@@ -104,10 +104,10 @@ class Controller{
     public function ctlRegistroRecurso () {
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                
+
 
                 if ($_POST["recurso1"] != "" ){
-                    
+
                     $idOferta = Datos::mdlIdOferta($_POST["recurso1"]);
 
                     $Datos = array("noControl" => $_POST["noControl"],
@@ -117,7 +117,7 @@ class Controller{
                 }
 
                 if ($_POST["recurso2"] != "" ){
-                    
+
                     $idOferta = Datos::mdlIdOferta($_POST["recurso2"]);
 
                     $Datos = array("noControl" => $_POST["noControl"],
@@ -798,7 +798,7 @@ class Controller{
       $Cuenta = Datos::mdlCuentaRecursos($Control);
       $Inscritos = $Cuenta[0];
 
-      
+
 
         $Resultado = Datos::mdlBuscaControlAjax($Tabla, $Control);
 
@@ -819,30 +819,30 @@ class Controller{
 
 
 	    // BUSCA TODAS LAS COMPRAS QUE SE HAYAN HECHO DE UN PRODUCTO EN ESPECIFICO
-    public function buscaPaqueteAjax($tabla, $codigo){
+    // public function buscaPaqueteAjax($tabla, $codigo){
 
-        $res = Datos::buscaPaqueteAjax($tabla, $codigo);
+    //     $res = Datos::buscaPaqueteAjax($tabla, $codigo);
 
-        echo $res[0];
-        echo " || ";
-        echo $res[1];
-        echo " || ";
-        echo $res[2];
+    //     echo $res[0];
+    //     echo " || ";
+    //     echo $res[1];
+    //     echo " || ";
+    //     echo $res[2];
 
-    }
+    // }
 
      // BUSCA TODAS LAS CLASES QUE DISPONE UN CLIENTESE HAYAN HECHO DE UN PRODUCTO EN ESPECIFICO
-    public function buscaClasesAjax($tabla, $codigo){
+    // public function buscaClasesAjax($tabla, $codigo){
 
-        $res = Datos::buscaClasesAjax($tabla, $codigo);
+    //     $res = Datos::buscaClasesAjax($tabla, $codigo);
 
-        echo $res[0];
-        // echo " || ";
-        // echo $res[1];
-        // echo " || ";
-        // echo $res[2];
+    //     echo $res[0];
+    //     // echo " || ";
+    //     // echo $res[1];
+    //     // echo " || ";
+    //     // echo $res[2];
 
-    }
+    // }
 
 }//Clase principal
 

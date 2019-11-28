@@ -107,7 +107,7 @@
                                                     <option value="">Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
-                                                    $extras -> buscaMateria();
+                                                    $extras -> buscaRecurso();
                                                     ?>
                                                 </select>
                                             </div>
@@ -119,7 +119,7 @@
                                                     <option value="">Seleccione</option>
                                                     <?php
                                                     $extras = new Controller();
-                                                    $extras -> buscaMateria();
+                                                    $extras -> buscaRecurso();
                                                     ?>
                                                 </select>
                                             </div>
