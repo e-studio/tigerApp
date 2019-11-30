@@ -13,7 +13,7 @@ class Controller{
 		}
 	}
 
-
+  
   public function buscaAlumno($noControl){
 
     $respuesta = Datos::buscaAlumno($noControl);
@@ -139,7 +139,7 @@ class Controller{
                     $idOferta = Datos::mdlIdOferta($_POST["recurso1"]);
 
                     $Datos = array("noControl" => $_POST["noControl"],
-                                    "idOferta" => $idOferta,
+                                    "idOferta" => $_POST["recurso1"],
                                     "fecha" => date("Y-m-d"));
                     $respuesta1 = Datos::mdlRegistroRecurso($Datos);
                 }
@@ -149,7 +149,7 @@ class Controller{
                     $idOferta = Datos::mdlIdOferta($_POST["recurso2"]);
 
                     $Datos = array("noControl" => $_POST["noControl"],
-                                    "idOferta" => $idOferta,
+                                    "idOferta" => $_POST["recurso2"],
                                     "fecha" => date("Y-m-d"));
                     $respuesta2 = Datos::mdlRegistroRecurso($Datos);
 
@@ -195,6 +195,9 @@ class Controller{
 
     }
 
+      
+
+
     //     #IMPRESION RECIBO DE INSCRIPCION DE UN ALUMNO
 //     #------------------------------------
     public function imprimirListaExtras($materia, $grupo){
@@ -216,7 +219,31 @@ class Controller{
 
     }
 
+    public function imprimirListaRec($idR){
+      $cont =1;
+      $noControl = Datos::buscanoControl($idR);
+      foreach($noControl as $row => $item1){
 
+        $respuesta = Datos::imprimirListaRecusos($item1["noControl"]);
+        
+
+        foreach ($respuesta as $row => $item){
+        echo '<tr>
+                  <td style="text-align: center">'.$cont.'</td>
+                  <td style="text-align: left">'.$item["noControl"].'</td>
+                  <td style="text-align: left">'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</td>
+            </tr>';
+            $cont++;
+      }
+
+      }
+
+      
+      //echo '<tr style="text-align: right">
+      //        <td colspan="4">'. ($cont-1) .' citas en total para esta sesion </td>
+      //      </tr>';
+
+  }
 
     # ACTUALIZA UN EXTRAORDINARIO
     #------------------------------------
@@ -796,8 +823,12 @@ class Controller{
         echo '<tr>
                   <td>'.$item["docente"].'</td>
                   <td>'.$item["materia"].'</td>
-                  <td>'.$item["tipo"].'</td>
-                  <td><a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+                  <td>';
+
+              echo '<a href="javascript:imprime(';
+              echo "'imprimeRecursos.php?idRecurso=".$item["id"]."')";
+              echo '"><button class="btn btn-info"><i class="fas fa-print"></i></button></a>';
+              echo   '<a href="editoferta.php?idEditar='.$item["id"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
                       <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["id"].'"><i class="fas fa-trash-alt"></i></button>
                       <a href="listaoferta.php?idBorrar='.$item["id"].'"><button id="'.$item["id"].'" name="'.$item["id"].'" hidden>X</button></a>
                   </td>

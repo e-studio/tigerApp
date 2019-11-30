@@ -98,7 +98,7 @@ $idBuscar = $_REQUEST['idEditar'];
           <div class="col-lg-4">
             <div class="card card-info">
             <div class="card-body" style="text-align: center">
-              <a href="paquetes.php" class="btn btn-secondary" >Cancelar</a>
+              <a href="listaoferta.php" class="btn btn-secondary" >Cancelar</a>
               <button type="submit" name="actualizar" class="btn btn-warning">Actualizar Datos</button>
             </div>
           </div>

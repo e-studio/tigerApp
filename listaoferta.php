@@ -53,7 +53,7 @@ require_once "includes/crud.php";
                 <tr>
                   <th>Docente</th>
                   <th>Materia</th>
-                  <th>Tipo</th>
+                  
                   <th>Acciones</th>
                 </tr>
                 </thead>
@@ -70,7 +70,7 @@ require_once "includes/crud.php";
                 <tr>
                   <th>Docente</th>
                   <th>Materia</th>
-                  <th>Tipo</th>
+                  
                   <th>Acciones</th>
                 </tr>
                 </tfoot>
@@ -137,6 +137,11 @@ require_once "includes/crud.php";
 <!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap4.js"></script>
+<script language=javascript>
+    function imprime(url){
+    window.open(url, "Diseño Web", "width=800, height=600")
+    }
+</script>
 <script>
   $(function () {
     $("#example1").DataTable();

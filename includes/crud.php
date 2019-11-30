@@ -37,13 +37,23 @@ class Datos extends Conexion{
 
 
 	public function mdlIdOferta ($Materia) {
-		$Statement = Conexion::conectar() -> prepare("SELECT id FROM ofertas WHERE materia = :materia");
+		$Statement = Conexion::conectar() -> prepare("SELECT id FROM oferta WHERE materia = :materia");
 		$Statement -> bindParam(":materia", $Materia, PDO::PARAM_STR);
 
 		$Statement -> execute();
 
 			return $Statement -> fetch();
 		$Statement -> close();
+	}
+
+
+	public function buscardatosREC($id){
+
+		$stmt = Conexion::conectar()->prepare("SELECT materia,docente FROM `oferta` WHERE id = :id");
+		$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+		$stmt->close();
 	}
 
 	public function mdlBuscaDocentes($tabla){
@@ -150,6 +160,26 @@ class Datos extends Conexion{
     $stmt->close();
   }
 
+  public function buscanoControl($id){
+	  $stmt = Conexion::conectar()->prepare("SELECT noControl FROM `registro` WHERE idOferta = :id");
+	  $stmt -> bindParam(":id", $id, PDO::PARAM_INT);
+
+	  $stmt ->execute();
+	  return $stmt ->fetchAll();
+	  $stmt ->close();
+  }
+
+  public function imprimirListaRecusos($noControl){
+
+    $stmt = Conexion::conectar()->prepare("SELECT * FROM `alumnos` WHERE noControl = :noC");
+    $stmt -> bindParam(":noC", $noControl, PDO::PARAM_INT);
+    
+
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $stmt->close();
+  }
+
 
 
 	// #LISTA TODOS LOS REGISTROS DE UNA TABLA
@@ -160,6 +190,19 @@ class Datos extends Conexion{
 		return $stmt->fetchAll();
 		$stmt->close();
 	}
+	public function listaOferta($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+	public function buscarec($idR){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY id");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}	
+
 
 
 	// #LISTA TODOS LOS REGISTROS DE UNA TABLA

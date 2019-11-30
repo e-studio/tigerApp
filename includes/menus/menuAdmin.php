@@ -27,17 +27,16 @@
           </ul>
         </li>
 
-        <!-- <li class="nav-item has-treeview">
+        <li class="nav-item has-treeview">
           <a href="#" class="nav-link"><i class="nav-icon fa fa-undo"></i>
             <p>Recursos<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item"><a href="registrorecursos.php" class="nav-link"><i class="fas fa-pencil-alt"></i> Inscripcion</a></li>
-            <li class="nav-item"><a href="listaCancelar.php" class="nav-link"><i class="fa fa-list-ol nav-icon"></i> Listas</a></li>
-            <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fas fa-folder-open"></i> Abrir </a></li>
-            <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-server"></i> Gestionar</a></li>
+            <li class="nav-item"><a href="agregaoferta.php" class="nav-link"><i class="fas fa-plus-circle"></i> Abrir nuevo recurso</a></li>
+            <li class="nav-item"><a href="listaoferta.php" class="nav-link"><i class="fa fa-server"></i> Gestionar recursos</a></li>
           </ul>
-        </li> -->
+        </li> 
 
 
 
