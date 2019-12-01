@@ -54,16 +54,8 @@ $idR = $_REQUEST['idRecurso'];
       <th>#</th>
       <th>Control</th>
       <th>Nombre</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>10</th>
+      <th>calificacion</th>
+      <th></th>
     </tr>
     </thead>
   <tbody>

@@ -232,7 +232,9 @@ class Controller{
                   <td style="text-align: center">'.$cont.'</td>
                   <td style="text-align: left">'.$item["noControl"].'</td>
                   <td style="text-align: left">'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</td>
-            </tr>';
+                  <td>&nbsp</td>
+                  <td>&emsp;</td>
+                  </tr>';
             $cont++;
       }
 
