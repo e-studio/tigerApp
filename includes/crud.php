@@ -75,7 +75,7 @@ class Datos extends Conexion{
 
 	public function mdlRecurso($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT o.`id`, o.`materia`, o.`docente`, (SELECT count(*) FROM `registro` WHERE `idOferta`=o.id) as inscritos FROM `oferta` as o");
 		$stmt->execute();
 		return $stmt->fetchAll();
 		$stmt->close();
@@ -169,11 +169,11 @@ class Datos extends Conexion{
 	  $stmt ->close();
   }
 
-  public function imprimirListaRecusos($noControl){
+  public function imprimirListaRecusos($idRecurso){
 
-    $stmt = Conexion::conectar()->prepare("SELECT * FROM `alumnos` WHERE noControl = :noC");
-    $stmt -> bindParam(":noC", $noControl, PDO::PARAM_INT);
-    
+    $stmt = Conexion::conectar()->prepare("SELECT a.nombres, a.apellidoPat, a.apellidoMat, a.grado, a.grupo, a.noControl FROM `registro` as r, alumnos as a WHERE r.noControl = a.noControl and r.idOferta = :idRecurso ORDER BY a.nombres");
+    $stmt -> bindParam(":idRecurso", $idRecurso, PDO::PARAM_INT);
+  
 
     $stmt->execute();
     return $stmt->fetchAll();

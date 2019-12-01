@@ -69,8 +69,13 @@ class Controller{
 		$respuesta = Datos::mdlRecurso("oferta");
 
 		foreach ($respuesta as $row => $item){
+        echo $item["inscritos"];
 
-				echo  '<option value = "'.$item["id"].'">'.$item["materia"]." - ".$item["docente"].'</option>';
+          if ($item["inscritos"] < 45) {
+        echo  '<option value = "'.$item["id"].'">'.$item["materia"]." - ".$item["docente"].'</option>';
+          }
+
+				
 		}
 	}
 
@@ -157,6 +162,17 @@ class Controller{
 
                 if($respuesta1 == "success" || $respuesta2 == "success"){
                     /*echo '<script type="text/javascript">window.open("imprimeCitas.php?noControl='.$noControl.'&nombre='.$nombreAlumno.'&grupo='.$grupoAlumno.'", "", "width=800, height=600") </script> ';*/
+
+                    echo '<script type="text/javascript">Swal.fire({
+                                  title: "¡Datos guardados!",
+                                  type: "success",
+                                  showCancelButton: false
+                                })
+                                .then((value) => {
+                                  if (value) {
+                                    window.location.href = "registrorecursos.php";
+                                  }
+                                });</script> ';
                   }
                 else{
                     echo '<script type="text/javascript">Swal.fire({
@@ -220,32 +236,32 @@ class Controller{
     }
 
     public function imprimirListaRec($idR){
-      $cont =1;
+
+      $Respuesta = Datos::imprimirListaRecusos($idR);
+
+      /*$cont =1;
       $noControl = Datos::buscanoControl($idR);
       foreach($noControl as $row => $item1){
 
         $respuesta = Datos::imprimirListaRecusos($item1["noControl"]);
-        
-
-        foreach ($respuesta as $row => $item){
+        */
+        $cont = 1;
+        foreach ($Respuesta as $row => $item){
         echo '<tr>
                   <td style="text-align: center">'.$cont.'</td>
                   <td style="text-align: left">'.$item["noControl"].'</td>
                   <td style="text-align: left">'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</td>
-                  <td>&nbsp</td>
-                  <td>&emsp;</td>
+                  <td>'.$item["grado"].$item["grupo"].'</td>
+                  <td style="width: 150px;"></td>
+                  <td style="width: 50px;"></td>
                   </tr>';
-            $cont++;
+        $cont++;
       }
 
       }
 
       
-      //echo '<tr style="text-align: right">
-      //        <td colspan="4">'. ($cont-1) .' citas en total para esta sesion </td>
-      //      </tr>';
-
-  }
+  
 
     # ACTUALIZA UN EXTRAORDINARIO
     #------------------------------------
