@@ -534,4 +534,36 @@ class Datos extends Conexion{
 
 	}
 
+	public function mdlBuscarEspecialidades ($tabla) {
+		$Statement = Conexion::conectar() -> prepare("SELECT DISTINCT especialidad FROM $tabla WHERE 1");
+
+		if ($Statement -> execute()) {
+			return $Statement -> fetchAll();
+		} else {
+			return "error";
+		}
+
+		$Statement -> close();
+	}
+
+	public function mdlRegistroAlumno ($Tabla, $Datos) {
+		$Statement = Conexion::conectar() -> prepare("INSERT INTO $Tabla VALUES(:noControl, :aPaterno, :aMaterno, :nombre, :grado, :grupo, :especialidad);");
+
+		$Statement -> bindParam(":noControl", $Datos["noControl"], PDO::PARAM_STR);
+		$Statement -> bindParam(":aPaterno", $Datos["aPaterno"], PDO::PARAM_STR);
+		$Statement -> bindParam(":aMaterno", $Datos["aMaterno"], PDO::PARAM_STR);
+		$Statement -> bindParam(":nombre", $Datos["nombre"], PDO::PARAM_STR);
+		$Statement -> bindParam(":grado", $Datos["grado"], PDO::PARAM_STR);
+		$Statement -> bindParam(":grupo", $Datos["grupo"], PDO::PARAM_STR);
+		$Statement -> bindParam(":especialidad", $Datos["especialidad"], PDO::PARAM_STR);
+
+		if ($Statement -> execute()) {
+			return "success";
+		} else {
+			return "error";
+		}
+
+		$Statement -> close();
+	}
+
 } // conexion

@@ -1075,6 +1075,65 @@ class Controller{
 
     // }
 
+
+    #BUSCA TODAS LAS ESPECIALIDADES DISTINTAS EN LA TABLA DE ALUMNOS
+
+    public function ctlBuscarEspecialidades () {
+
+      $Resultado = Datos::mdlBuscarEspecialidades("alumnos");
+
+        if ($Resultado != "error") {
+          foreach ($Resultado as $row => $item) {
+            echo '<option>'.$item[0].'</option>';
+         }
+        }
+
+    }
+
+    public function ctlRegistroAlumno () {
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $Datos = array("noControl" => $_POST["noControl"],
+                       "nombre" => $_POST["nombre"],
+                       "aPaterno" => $_POST["apaterno"],
+                       "aMaterno" => $_POST["amaterno"],
+                       "grado" => $_POST["grado"],
+                       "grupo" => $_POST["grupo"],
+                       "especialidad" => $_POST["especialidad"]);
+
+        $Resultado = Datos::mdlRegistroAlumno("alumnos", $Datos);
+
+              if($Resultado == "success"){
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "¡Registro exitoso!",
+                      type: "success",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "registroalumnos.php";
+                      }
+                    });</script> ';
+
+      }
+      else{
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "¡Error al guardar!",
+                      type: "error",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "registroalumnos.php";
+                      }
+                    });</script> ';
+      }
+
+      }
+
+    }
+
 }//Clase principal
 
 ?>
