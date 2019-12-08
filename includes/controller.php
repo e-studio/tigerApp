@@ -13,7 +13,32 @@ class Controller{
 		}
 	}
 
+  #LISTADO DE TODOS LOS ALUMNOS
+    #------------------------------------
+    public function listaAlumno(){
+
+      $respuesta = Datos::listaAlumnos("alumnos");
+      $cont =0;
+
+      foreach ($respuesta as $row => $item){
+        $cont ++;
+
+      echo '<tr>
+                <td>'.$item["noControl"].'</td>
+                <td>'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</td>
+                <td>'.$item["grado"]." ".$item["grupo"].'</td>
+                <td>'.$item["especialidad"].'</td>
+                <td>
+              <a href="editoferta.php?idEditar='.$item["noControl"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+              <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["noControl"].'"><i class="fas fa-trash-alt"></i></button>
+              <a href="listaoferta.php?idBorrar='.$item["noControl"].'"><button id="'.$item["noControl"].'" name="'.$item["noControl"].'" hidden>X</button></a>
+                </td>
+              </tr>';
+      }
+
+  }
   
+
   public function buscaAlumno($noControl){
 
     $respuesta = Datos::buscaAlumno($noControl);

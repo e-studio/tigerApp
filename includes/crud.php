@@ -13,6 +13,13 @@ class Datos extends Conexion{
 	}
 
 
+	public function listaAlumnos($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY noControl");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
 	public function buscaAlumno($noControl){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM alumnos where noControl = :noControl");
