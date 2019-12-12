@@ -29,7 +29,7 @@ require_once "includes/crud.php";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Lista de Paquetes</h1>
+            <h1 class="m-0 text-dark">Lista de Alumnos</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -44,7 +44,7 @@ require_once "includes/crud.php";
 
             <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title">Paquetes Registrados</h3>
+              <h3 class="card-title">Alumnos</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -62,7 +62,7 @@ require_once "includes/crud.php";
                   <?php
                     $registro = new Controller();
                     $registro -> listaAlumno();
-                    $registro -> borraPaquete();
+                    
 
                   ?>
 
