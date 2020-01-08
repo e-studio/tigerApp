@@ -79,12 +79,6 @@
                                           <h5><p id="grupo"></p></h5>
                                           <input type="hidden" class="form-control" name="grupoAlumno" id="grupoAlumno">
                                           <h5><p id="inscrito"></p></h5>
-
-
-
-
-
-
                                         </div>
                                     </div>
                                 </div>

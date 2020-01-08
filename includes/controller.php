@@ -13,7 +13,7 @@ class Controller{
 		}
 	}
 
-  
+
   public function buscaAlumno($noControl){
 
     $respuesta = Datos::buscaAlumno($noControl);
@@ -75,7 +75,7 @@ class Controller{
         echo  '<option value = "'.$item["id"].'">'.$item["materia"]." - ".$item["docente"].'</option>';
           }
 
-				
+
 		}
 	}
 
@@ -134,6 +134,8 @@ class Controller{
       }
     }
   }
+
+
     public function ctlRegistroRecurso () {
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -211,7 +213,7 @@ class Controller{
 
     }
 
-      
+
 
 
     //     #IMPRESION RECIBO DE INSCRIPCION DE UN ALUMNO
@@ -226,6 +228,8 @@ class Controller{
                   <td style="text-align: center">'.$cont.'</td>
                   <td style="text-align: left">'.$item["noControl"].'</td>
                   <td style="text-align: left">'.$item["nombre"].'</td>
+                  <td style="width: 150px"></td>
+                  <td style="width: 60px"></td>
             </tr>';
             $cont++;
         }
@@ -239,12 +243,6 @@ class Controller{
 
       $Respuesta = Datos::imprimirListaRecusos($idR);
 
-      /*$cont =1;
-      $noControl = Datos::buscanoControl($idR);
-      foreach($noControl as $row => $item1){
-
-        $respuesta = Datos::imprimirListaRecusos($item1["noControl"]);
-        */
         $cont = 1;
         foreach ($Respuesta as $row => $item){
         echo '<tr>
@@ -260,8 +258,8 @@ class Controller{
 
       }
 
-      
-  
+
+
 
     # ACTUALIZA UN EXTRAORDINARIO
     #------------------------------------
