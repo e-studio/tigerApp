@@ -275,11 +275,26 @@ class Controller{
         foreach ($Respuesta as $row => $item){
         echo '<tr>
                   <td style="text-align: center">'.$cont.'</td>
-                  <td style="text-align: left">'.$item["noControl"].'</td>
-                  <td style="text-align: left">'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</td>
+                  
+                  <td style="text-align: left"" width: 10px">'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</td>
                   <td>'.$item["grado"].$item["grupo"].'</td>
-                  <td style="width: 150px;"></td>
-                  <td style="width: 50px;"></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td ></td>
+                  <td style="width: 100px;"></td>
+                  <td style="width: 40px;"></td>
                   </tr>';
         $cont++;
       }
