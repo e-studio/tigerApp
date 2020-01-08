@@ -14,6 +14,34 @@ class Controller{
 	}
 
 
+
+  #LISTADO DE TODOS LOS ALUMNOS
+    #------------------------------------
+    public function listaAlumno(){
+
+      $respuesta = Datos::listaAlumnos("alumnos");
+      $cont =0;
+
+      foreach ($respuesta as $row => $item){
+        $cont ++;
+
+      echo '<tr>
+                <td>'.$item["noControl"].'</td>
+                <td>'.$item["nombres"]." ".$item["apellidoPat"]." ".$item["apellidoMat"].'</td>
+                <td>'.$item["grado"]." ".$item["grupo"].'</td>
+                <td>'.$item["especialidad"].'</td>
+                <td>
+              <a href="editaAlumno.php?idEditar='.$item["noControl"].'"><button class="btn btn-warning"><i class="fas fa-edit"></i></button></a>
+              <button class="btn btn-danger btnBorrar" data-toggle="modal" data-target="#deleteModal" data-borrar="'.$item["noControl"].'"><i class="fas fa-trash-alt"></i></button>
+              <a href="listaoferta.php?idBorrar='.$item["noControl"].'"><button id="'.$item["noControl"].'" name="'.$item["noControl"].'" hidden>X</button></a>
+                </td>
+              </tr>';
+      }
+
+  }
+
+
+
   public function buscaAlumno($noControl){
 
     $respuesta = Datos::buscaAlumno($noControl);
@@ -1047,6 +1075,126 @@ class Controller{
     //     // echo $res[2];
 
     // }
+
+
+    #BUSCA TODAS LAS ESPECIALIDADES DISTINTAS EN LA TABLA DE ALUMNOS
+
+    public function ctlBuscarEspecialidades () {
+
+      $Resultado = Datos::mdlBuscarEspecialidades("alumnos");
+
+        if ($Resultado != "error") {
+          foreach ($Resultado as $row => $item) {
+            echo '<option>'.$item[0].'</option>';
+         }
+        }
+
+    }
+
+    public function ctlBuscarEspecialidades2 ($especial) {
+
+      $Resultado = Datos::mdlBuscarEspecialidades("alumnos");
+
+        if ($Resultado != "error") {
+          foreach ($Resultado as $row => $item) {
+            if ($especial == $item[0]) {
+              echo '<option selected>'.$item[0].'</option>';
+            }else{
+              echo '<option >'.$item[0].'</option>';
+            }
+
+         }
+        }
+
+    }
+
+    public function ctlRegistroAlumno () {
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $Datos = array("noControl" => $_POST["noControl"],
+                       "nombre" => $_POST["nombre"],
+                       "aPaterno" => $_POST["apaterno"],
+                       "aMaterno" => $_POST["amaterno"],
+                       "grado" => $_POST["grado"],
+                       "grupo" => $_POST["grupo"],
+                       "especialidad" => $_POST["especialidad"]);
+
+        $Resultado = Datos::mdlRegistroAlumno("alumnos", $Datos);
+
+              if($Resultado == "success"){
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "¡Registro exitoso!",
+                      type: "success",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "registroalumnos.php";
+                      }
+                    });</script> ';
+
+      }
+      else{
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "¡Error al guardar!",
+                      type: "error",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "registroalumnos.php";
+                      }
+                    });</script> ';
+      }
+
+      }
+
+    }
+
+    public function ctlActualizaAlumno ($numerocon) {
+
+      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $Datos = array("noControl" => $numerocon,
+                       "nombre" => $_POST["nombre"],
+                       "aPaterno" => $_POST["apaterno"],
+                       "aMaterno" => $_POST["amaterno"],
+                       "grado" => $_POST["grado"],
+                       "grupo" => $_POST["grupo"],
+                       "especialidad" => $_POST["especialidad"]);
+
+        $Resultado = Datos::mdlActualizaAlumno("alumnos", $Datos);
+
+              if($Resultado == "success"){
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "¡Registro exitoso!",
+                      type: "success",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "listaalumnos.php";
+                      }
+                    });</script> ';
+
+      }
+      else{
+        echo '<script type="text/javascript">Swal.fire({
+                      title: "¡Error al guardar!",
+                      type: "error",
+                      showCancelButton: false
+                    })
+                    .then((value) => {
+                      if (value) {
+                        window.location.href = "editaAlumno.php";
+                      }
+                    });</script> ';
+      }
+
+      }
+
+    }
 
 }//Clase principal
 

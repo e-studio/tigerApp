@@ -13,6 +13,13 @@ class Datos extends Conexion{
 	}
 
 
+	public function listaAlumnos($tabla){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY noControl");
+		$stmt->execute();
+		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
 	public function buscaAlumno($noControl){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM alumnos where noControl = :noControl");
@@ -212,6 +219,19 @@ class Datos extends Conexion{
 		$stmt -> bindParam(":noControl", $noControl, PDO::PARAM_STR);
 		$stmt->execute();
 		return $stmt->fetchAll();
+		$stmt->close();
+	}
+
+
+	public function buscaal($que, $donde){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $donde WHERE noControl = :que");
+
+		$stmt->bindParam(":que", $que, PDO::PARAM_INT);
+
+		$stmt -> execute();
+		return $stmt -> fetch();
+
 		$stmt->close();
 	}
 
@@ -525,6 +545,58 @@ class Datos extends Conexion{
 
 		$stmt->close();
 
+	}
+
+	public function mdlBuscarEspecialidades ($tabla) {
+		$Statement = Conexion::conectar() -> prepare("SELECT DISTINCT especialidad FROM $tabla WHERE 1");
+
+		if ($Statement -> execute()) {
+			return $Statement -> fetchAll();
+		} else {
+			return "error";
+		}
+
+		$Statement -> close();
+	}
+
+	public function mdlRegistroAlumno ($Tabla, $Datos) {
+		$Statement = Conexion::conectar() -> prepare("INSERT INTO $Tabla VALUES(:noControl, :aPaterno, :aMaterno, :nombre, :grado, :grupo, :especialidad);");
+
+		$Statement -> bindParam(":noControl", $Datos["noControl"], PDO::PARAM_STR);
+		$Statement -> bindParam(":aPaterno", $Datos["aPaterno"], PDO::PARAM_STR);
+		$Statement -> bindParam(":aMaterno", $Datos["aMaterno"], PDO::PARAM_STR);
+		$Statement -> bindParam(":nombre", $Datos["nombre"], PDO::PARAM_STR);
+		$Statement -> bindParam(":grado", $Datos["grado"], PDO::PARAM_STR);
+		$Statement -> bindParam(":grupo", $Datos["grupo"], PDO::PARAM_STR);
+		$Statement -> bindParam(":especialidad", $Datos["especialidad"], PDO::PARAM_STR);
+
+		if ($Statement -> execute()) {
+			return "success";
+		} else {
+			return "error";
+		}
+
+		$Statement -> close();
+	}
+
+	public function mdlActualizaAlumno ($Tabla, $Datos) {
+		$Statement = Conexion::conectar() -> prepare("UPDATE $Tabla SET `nombres`= :aPaterno,`apellidoPat`=:aMaterno,`apellidoMat`=:nombre,`grado`=:grado,`grupo`=:grupo,`especialidad`=:especialidad WHERE noControl = :noControl");
+
+		$Statement -> bindParam(":noControl", $Datos["noControl"], PDO::PARAM_STR);
+		$Statement -> bindParam(":aPaterno", $Datos["aPaterno"], PDO::PARAM_STR);
+		$Statement -> bindParam(":aMaterno", $Datos["aMaterno"], PDO::PARAM_STR);
+		$Statement -> bindParam(":nombre", $Datos["nombre"], PDO::PARAM_STR);
+		$Statement -> bindParam(":grado", $Datos["grado"], PDO::PARAM_STR);
+		$Statement -> bindParam(":grupo", $Datos["grupo"], PDO::PARAM_STR);
+		$Statement -> bindParam(":especialidad", $Datos["especialidad"], PDO::PARAM_STR);
+
+		if ($Statement -> execute()) {
+			return "success";
+		} else {
+			return "error";
+		}
+
+		$Statement -> close();
 	}
 
 } // conexion

@@ -38,6 +38,15 @@
           </ul>
         </li> 
 
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link"><i class="fas fa-user"></i>
+            <p>Alumnos<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="registroalumnos.php" class="nav-link"><i class="fas fa-user-plus"></i> Agregar alumno</a></li>
+            <li class="nav-item"><a href="listaalumnos.php" class="nav-link"><i class="fas fa-users-cog"></i> Gestionar alumnos</a></li>
+          </ul>
+        </li> 
 
 
 
