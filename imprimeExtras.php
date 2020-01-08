@@ -43,14 +43,15 @@ $grupo = $_REQUEST['grupo'];
     </thead>
   </table>
   <hr>
-<table border="1" width="80%" border="0" cellspacing="0" cellpadding="0">
+<table border="1" width="100%" border="0" cellspacing="0" cellpadding="0">
   <thead>
     <tr>
     </tr>
     <tr style="background-color: #a5a4a7">
       <th>#</th>
-      <th>Control</th>
+      <th style="width: 120px">Control</th>
       <th>Nombre</th>
+      <th colspan="2">Calificación</th>
     </tr>
     </thead>
   <tbody>
