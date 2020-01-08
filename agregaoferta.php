@@ -111,7 +111,7 @@ require_once "includes/crud.php";
           <div class="col-lg-4">
             <div class="card card-info">
             <div class="card-body" style="text-align: center">
-              <a href="paquetes.php" class="btn btn-secondary" >Cancelar</a>
+              <a href="starter.php" class="btn btn-secondary" >Cancelar</a>
               <button type="submit" class="btn btn-success">Crear Recurso</button>
             </div>
           </div>
