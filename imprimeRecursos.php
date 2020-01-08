@@ -25,11 +25,13 @@ $idR = $_REQUEST['idRecurso'];
 
   <table width="80%" border="0" cellspacing="0" cellpadding="0">
     <thead>
-      <tr>
         <th style="width: 120px">
           <img src="dist/img/tiger.png" alt="" width="80px" height="80px">
         </th>
         <th style="text-align: left">
+          <strong >Centro de Bachillerato Tecnologico </strong><br>
+          <strong>Industrial y de Servicios No. 117</strong><br> 
+          <strong>curso intersemestral</strong><br>  
           <?php
                 //$datos = new Controller();
                 //$datos -> buscardatosREC($idR);
@@ -46,15 +48,30 @@ $idR = $_REQUEST['idRecurso'];
     </thead>
   </table>
   <hr>
-<table border="1" width="80%" border="0" cellspacing="0" cellpadding="0">
+<table border="1" width="90%" border="0" cellspacing="0" cellpadding="0">
   <thead>
     <tr>
     </tr>
     <tr style="background-color: #a5a4a7">
-      <th>#</th>
-      <th>Control</th>
-      <th>Nombre</th>
-      <th>Grupo</th>
+      <th style="width: 20px;">#</th>
+      
+      <th style="width: 400px;">Nombre</th>
+      <th style="width: 20px;">Grupo</th>
+      <th style="width: 20px;">1</th>
+      <th style="width: 20px;">2</th>
+      <th style="width: 20px;">3</th>
+      <th style="width: 20px;">4</th>
+      <th style="width: 20px;">5</th>
+      <th style="width: 20px;">6</th>
+      <th style="width: 20px;">7</th>
+      <th style="width: 20px;">8</th>
+      <th style="width: 20px;">9</th>
+      <th style="width: 20px;">10</th>
+      <th style="width: 20px;">11</th>
+      <th style="width: 20px;">12</th>
+      <th style="width: 20px;">13</th>
+      <th style="width: 20px;">14</th>
+      <th style="width: 20px;">15</th>
       <th colspan="2">Calificación</th>
 
     </tr>
