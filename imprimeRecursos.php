@@ -26,12 +26,12 @@ $idR = $_REQUEST['idRecurso'];
   <table width="80%" border="0" cellspacing="0" cellpadding="0">
     <thead>
         <th style="width: 120px">
-          <img src="dist/img/tiger.png" alt="" width="80px" height="80px">
+          <img src="loginAssets/images/cbtis.png" alt="" width="70px" height="80px">
         </th>
         <th style="text-align: left">
           <strong >Centro de Bachillerato Tecnologico </strong><br>
-          <strong>Industrial y de Servicios No. 117</strong><br> 
-          <strong>curso intersemestral</strong><br>  
+          <strong>Industrial y de Servicios No. 117</strong><br>
+          <strong>curso intersemestral</strong><br>
           <?php
                 //$datos = new Controller();
                 //$datos -> buscardatosREC($idR);
@@ -54,7 +54,7 @@ $idR = $_REQUEST['idRecurso'];
     </tr>
     <tr style="background-color: #a5a4a7">
       <th style="width: 20px;">#</th>
-      
+
       <th style="width: 400px;">Nombre</th>
       <th style="width: 20px;">Grupo</th>
       <th style="width: 20px;">1</th>

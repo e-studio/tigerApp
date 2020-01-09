@@ -37,7 +37,12 @@
   <div class="wrapper">
         <?php
             include "includes/menus/navegacion.php";
-            include "includes/menus/menuAdmin.php";
+            if ($_SESSION["rol"] == 0){
+              include "includes/menus/menuAdmin.php";
+            }
+            else{
+              include "includes/menus/menu.php";
+            }
         ?>
 
         <div class="content-wrapper">
@@ -138,7 +143,7 @@
 	                        							$Especialidad -> ctlBuscarEspecialidades();
 	                        							?>
 	                        						</select>
-	                  
+
 	                        					</div>
 	                        				</div>
 	                        			</div>

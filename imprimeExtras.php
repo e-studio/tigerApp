@@ -28,7 +28,7 @@ $grupo = $_REQUEST['grupo'];
     <thead>
       <tr>
         <th style="width: 120px">
-          <img src="dist/img/tiger.png" alt="" width="80px" height="80px">
+          <img src="loginAssets/images/cbtis.png" alt="" width="70px" height="80px">
         </th>
         <th style="text-align: left">
           <?php

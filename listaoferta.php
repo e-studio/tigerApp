@@ -53,7 +53,7 @@ require_once "includes/crud.php";
                 <tr>
                   <th>Docente</th>
                   <th>Materia</th>
-                  
+
                   <th>Acciones</th>
                 </tr>
                 </thead>
@@ -70,7 +70,7 @@ require_once "includes/crud.php";
                 <tr>
                   <th>Docente</th>
                   <th>Materia</th>
-                  
+
                   <th>Acciones</th>
                 </tr>
                 </tfoot>

@@ -19,7 +19,12 @@ require_once "includes/crud.php";
   <!-- Main Sidebar Container -->
   <?php
     include "includes/menus/navegacion.php";
-    include "includes/menus/menuAdmin.php";
+    if ($_SESSION["rol"] == 0){
+      include "includes/menus/menuAdmin.php";
+    }
+    else{
+      include "includes/menus/menu.php";
+    }
   ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -62,7 +67,7 @@ require_once "includes/crud.php";
                   <?php
                     $registro = new Controller();
                     $registro -> listaAlumno();
-                    
+
 
                   ?>
 
