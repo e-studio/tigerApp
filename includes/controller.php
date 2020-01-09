@@ -191,7 +191,7 @@ class Controller{
                 }
 
                 if($respuesta1 == "success" || $respuesta2 == "success"){
-                    /*echo '<script type="text/javascript">window.open("imprimeCitas.php?noControl='.$noControl.'&nombre='.$nombreAlumno.'&grupo='.$grupoAlumno.'", "", "width=800, height=600") </script> ';*/
+                    echo '<script type="text/javascript">window.open("imprimeCitasRec.php?noControl='.$_POST["noControl"].'&nombre='.$_POST["nombreAlumno"].'&grupo='.$_POST["grupoAlumno"].'", "", "width=800, height=600") </script> ';
 
                     echo '<script type="text/javascript">Swal.fire({
                                   title: "¡Datos guardados!",
@@ -232,6 +232,23 @@ class Controller{
         echo '<tr>
                   <td style="text-align: center">'.$cont.'</td>
                   <td style="text-align: left">'.$item["materia"].'</td>
+            </tr>';
+            $cont++;
+        }
+        //echo '<tr style="text-align: right">
+        //        <td colspan="4">'. ($cont-1) .' citas en total para esta sesion </td>
+        //      </tr>';
+
+    }
+    public function imprimirRecursos($noControl){
+
+        $respuesta = Datos::imprimirRecursos($noControl);
+        $cont =1;
+
+        foreach ($respuesta as $row => $item){
+        echo '<tr>
+                  <td style="text-align: center">'.$cont.'</td>
+                  <td style="text-align: left">'.$item["materia"].'-'.$item["docente"].'</td>
             </tr>';
             $cont++;
         }

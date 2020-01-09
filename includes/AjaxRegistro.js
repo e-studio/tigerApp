@@ -99,7 +99,7 @@ function findNoControl(Control, Tipo) {
 
                   if (recs>0) document.getElementById("btnGuardar").disabled = false;
 
-                  document.getElementById("imprimir").setAttribute("href", "javascript:imprime('imprimeCitas.php?noControl="+Control+"')");
+                  document.getElementById("imprimir").setAttribute("href", "javascript:imprime('imprimeCitasRec.php?noControl="+Control+"&nombre="+Respuesta[3]+' '+ Respuesta[1]+ ' ' +Respuesta[2]+"&grupo="+Respuesta[4]+Respuesta[5]+"')");
                   if (Respuesta[6]>0) document.getElementById("btnImprimir").disabled = false;
 
                   for(var i = 1; i <= recs; i++){

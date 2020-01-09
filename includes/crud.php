@@ -153,6 +153,15 @@ class Datos extends Conexion{
     return $stmt->fetchAll();
     $stmt->close();
   }
+  public function imprimirRecursos($noControl){
+    $stmt = Conexion::conectar()->prepare("SELECT r.materia,r.docente FROM `oferta` as r,registro as a WHERE a.idOferta=r.id AND a.noControl = :noControl");
+    $stmt -> bindParam(":noControl", $noControl, PDO::PARAM_STR);
+    
+    	//SELECT  r.materia FROM `oferta` as r,registro as a WHERE a.idOferta=r.id and a.idOferta = 2 AND a.noControl = 17308051170006 ; 
+    $stmt->execute();
+    return $stmt->fetchAll();
+    $stmt->close();
+  }
 
 
   // #IMPRESION LISTA DE ALUMNOS INSCRITOS A UN RECURSO

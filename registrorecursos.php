@@ -166,9 +166,9 @@
 </div>
 
 <script language=javascript>
-   /* function imprime(url){
+    function imprime(url){
     window.open(url, "Diseño Web", "width=800, height=600")
-    }*/
+    }
 </script>
 
 <!-- jQuery -->
